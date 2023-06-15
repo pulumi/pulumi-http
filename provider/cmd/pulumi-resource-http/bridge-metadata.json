@@ -1,0 +1,30 @@
+{
+    "auto-aliasing": {
+        "datasources": {
+            "http": {
+                "current": "http:index/getHttp:getHttp"
+            }
+        }
+    },
+    "renames": {
+        "functions": {
+            "http:index/getHttp:getHttp": "http"
+        },
+        "renamedProperties": {
+            "http:index/getHttp:getHttp": {
+                "caCertPem": "ca_cert_pem",
+                "requestBody": "request_body",
+                "requestHeaders": "request_headers",
+                "requestTimeoutMs": "request_timeout_ms",
+                "responseBody": "response_body",
+                "responseBodyBase64": "response_body_base64",
+                "responseHeaders": "response_headers",
+                "statusCode": "status_code"
+            },
+            "http:index/getHttpRetry:getHttpRetry": {
+                "maxDelayMs": "max_delay_ms",
+                "minDelayMs": "min_delay_ms"
+            }
+        }
+    }
+}
