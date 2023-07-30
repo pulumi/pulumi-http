@@ -7,6 +7,9 @@
 
 # HTTP Resource Provider
 
+This provider is mainly used for ease of converting terraform programs to Pulumi.
+For standard use in Pulumi programs, please use your programming language's standard http library.
+
 The HTTP resource provider for Pulumi lets you use HTTP resources in your cloud programs.
 To use this package, please [install the Pulumi CLI first](https://www.pulumi.com/docs/install/).
 
