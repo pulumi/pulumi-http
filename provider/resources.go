@@ -17,6 +17,7 @@ package provider
 import (
 	_ "embed" // Embed bridge metadata
 	"fmt"
+	"os"
 	"path"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -136,7 +137,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"http": {Tok: "http:index/getHttp:getHttp"},
+			"http": {
+				Tok: "http:index/getHttp:getHttp",
+				Docs: &tfbridge.DocInfo{
+					Markdown: readFile("upstream/docs/data-sources/http.md"),
+				},
+			},
 		},
 	}
 
@@ -156,4 +162,12 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+func readFile(path string) []byte {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		panic(err)
+	}
+	return b
 }
