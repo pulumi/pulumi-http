@@ -167,7 +167,7 @@ func Provider() tfbridge.ProviderInfo {
 func readFile(path string) []byte {
 	b, err := os.ReadFile(path)
 	if err != nil {
-		panic(err)
+		return []byte{}
 	}
 	return b
 }
