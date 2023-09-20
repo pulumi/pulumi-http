@@ -26,10 +26,6 @@ class GetHttpResult:
     def __init__(__self__, body=None, ca_cert_pem=None, id=None, insecure=None, method=None, request_body=None, request_headers=None, request_timeout_ms=None, response_body=None, response_body_base64=None, response_headers=None, retry=None, status_code=None, url=None):
         if body and not isinstance(body, str):
             raise TypeError("Expected argument 'body' to be a str")
-        if body is not None:
-            warnings.warn("""Use response_body instead""", DeprecationWarning)
-            pulumi.log.warn("""body is deprecated: Use response_body instead""")
-
         pulumi.set(__self__, "body", body)
         if ca_cert_pem and not isinstance(ca_cert_pem, str):
             raise TypeError("Expected argument 'ca_cert_pem' to be a str")
@@ -77,6 +73,9 @@ class GetHttpResult:
         """
         The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.
         """
+        warnings.warn("""Use response_body instead""", DeprecationWarning)
+        pulumi.log.warn("""body is deprecated: Use response_body instead""")
+
         return pulumi.get(self, "body")
 
     @property
@@ -240,20 +239,20 @@ def get_http(ca_cert_pem: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('http:index/getHttp:getHttp', __args__, opts=opts, typ=GetHttpResult).value
 
     return AwaitableGetHttpResult(
-        body=__ret__.body,
-        ca_cert_pem=__ret__.ca_cert_pem,
-        id=__ret__.id,
-        insecure=__ret__.insecure,
-        method=__ret__.method,
-        request_body=__ret__.request_body,
-        request_headers=__ret__.request_headers,
-        request_timeout_ms=__ret__.request_timeout_ms,
-        response_body=__ret__.response_body,
-        response_body_base64=__ret__.response_body_base64,
-        response_headers=__ret__.response_headers,
-        retry=__ret__.retry,
-        status_code=__ret__.status_code,
-        url=__ret__.url)
+        body=pulumi.get(__ret__, 'body'),
+        ca_cert_pem=pulumi.get(__ret__, 'ca_cert_pem'),
+        id=pulumi.get(__ret__, 'id'),
+        insecure=pulumi.get(__ret__, 'insecure'),
+        method=pulumi.get(__ret__, 'method'),
+        request_body=pulumi.get(__ret__, 'request_body'),
+        request_headers=pulumi.get(__ret__, 'request_headers'),
+        request_timeout_ms=pulumi.get(__ret__, 'request_timeout_ms'),
+        response_body=pulumi.get(__ret__, 'response_body'),
+        response_body_base64=pulumi.get(__ret__, 'response_body_base64'),
+        response_headers=pulumi.get(__ret__, 'response_headers'),
+        retry=pulumi.get(__ret__, 'retry'),
+        status_code=pulumi.get(__ret__, 'status_code'),
+        url=pulumi.get(__ret__, 'url'))
 
 
 @_utilities.lift_output_func(get_http)

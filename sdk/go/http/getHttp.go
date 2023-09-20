@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-http/sdk/go/http/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetHttp(ctx *pulumi.Context, args *GetHttpArgs, opts ...pulumi.InvokeOption) (*GetHttpResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetHttpResult
 	err := ctx.Invoke("http:index/getHttp:getHttp", args, &rv, opts...)
 	if err != nil {
@@ -123,6 +126,12 @@ func (o GetHttpResultOutput) ToGetHttpResultOutput() GetHttpResultOutput {
 
 func (o GetHttpResultOutput) ToGetHttpResultOutputWithContext(ctx context.Context) GetHttpResultOutput {
 	return o
+}
+
+func (o GetHttpResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetHttpResult] {
+	return pulumix.Output[GetHttpResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
