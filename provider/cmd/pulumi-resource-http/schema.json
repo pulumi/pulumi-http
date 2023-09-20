@@ -16,37 +16,35 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
-            }
+            },
+            "compatibility": "tfbridge20"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-http/sdk/go/http",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-http/sdk/go/http"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageDescription": "A Pulumi package for creating and managing HTTP cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-http)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-http` repo](https://github.com/pulumi/pulumi-http/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-http` repo](https://github.com/terraform-providers/terraform-provider-http/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
                 "@types/node": "^16.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing HTTP cloud resources.",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-http)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-http` repo](https://github.com/pulumi/pulumi-http/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-http` repo](https://github.com/terraform-providers/terraform-provider-http/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-http)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-http` repo](https://github.com/pulumi/pulumi-http/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-http` repo](https://github.com/terraform-providers/terraform-provider-http/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-http)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-http` repo](https://github.com/pulumi/pulumi-http/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-http` repo](https://github.com/terraform-providers/terraform-provider-http/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {},

@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-http/sdk/go/http/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type GetHttpRetry struct {
 	// The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
@@ -49,6 +53,12 @@ func (i GetHttpRetryArgs) ToGetHttpRetryOutput() GetHttpRetryOutput {
 
 func (i GetHttpRetryArgs) ToGetHttpRetryOutputWithContext(ctx context.Context) GetHttpRetryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GetHttpRetryOutput)
+}
+
+func (i GetHttpRetryArgs) ToOutput(ctx context.Context) pulumix.Output[GetHttpRetry] {
+	return pulumix.Output[GetHttpRetry]{
+		OutputState: i.ToGetHttpRetryOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i GetHttpRetryArgs) ToGetHttpRetryPtrOutput() GetHttpRetryPtrOutput {
@@ -92,6 +102,12 @@ func (i *getHttpRetryPtrType) ToGetHttpRetryPtrOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(GetHttpRetryPtrOutput)
 }
 
+func (i *getHttpRetryPtrType) ToOutput(ctx context.Context) pulumix.Output[*GetHttpRetry] {
+	return pulumix.Output[*GetHttpRetry]{
+		OutputState: i.ToGetHttpRetryPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetHttpRetryOutput struct{ *pulumi.OutputState }
 
 func (GetHttpRetryOutput) ElementType() reflect.Type {
@@ -114,6 +130,12 @@ func (o GetHttpRetryOutput) ToGetHttpRetryPtrOutputWithContext(ctx context.Conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetHttpRetry) *GetHttpRetry {
 		return &v
 	}).(GetHttpRetryPtrOutput)
+}
+
+func (o GetHttpRetryOutput) ToOutput(ctx context.Context) pulumix.Output[GetHttpRetry] {
+	return pulumix.Output[GetHttpRetry]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
@@ -143,6 +165,12 @@ func (o GetHttpRetryPtrOutput) ToGetHttpRetryPtrOutput() GetHttpRetryPtrOutput {
 
 func (o GetHttpRetryPtrOutput) ToGetHttpRetryPtrOutputWithContext(ctx context.Context) GetHttpRetryPtrOutput {
 	return o
+}
+
+func (o GetHttpRetryPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*GetHttpRetry] {
+	return pulumix.Output[*GetHttpRetry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetHttpRetryPtrOutput) Elem() GetHttpRetryOutput {
