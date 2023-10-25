@@ -36,7 +36,13 @@ class GetHttpRetryResult(dict):
              attempts: Optional[int] = None,
              max_delay_ms: Optional[int] = None,
              min_delay_ms: Optional[int] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if max_delay_ms is None and 'maxDelayMs' in kwargs:
+            max_delay_ms = kwargs['maxDelayMs']
+        if min_delay_ms is None and 'minDelayMs' in kwargs:
+            min_delay_ms = kwargs['minDelayMs']
+
         if attempts is not None:
             _setter("attempts", attempts)
         if max_delay_ms is not None:
