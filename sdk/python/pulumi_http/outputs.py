@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -24,12 +24,31 @@ class GetHttpRetryResult(dict):
         :param int max_delay_ms: The maximum delay between retry requests in milliseconds.
         :param int min_delay_ms: The minimum delay between retry requests in milliseconds.
         """
+        GetHttpRetryResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attempts=attempts,
+            max_delay_ms=max_delay_ms,
+            min_delay_ms=min_delay_ms,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attempts: Optional[int] = None,
+             max_delay_ms: Optional[int] = None,
+             min_delay_ms: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if max_delay_ms is None and 'maxDelayMs' in kwargs:
+            max_delay_ms = kwargs['maxDelayMs']
+        if min_delay_ms is None and 'minDelayMs' in kwargs:
+            min_delay_ms = kwargs['minDelayMs']
+
         if attempts is not None:
-            pulumi.set(__self__, "attempts", attempts)
+            _setter("attempts", attempts)
         if max_delay_ms is not None:
-            pulumi.set(__self__, "max_delay_ms", max_delay_ms)
+            _setter("max_delay_ms", max_delay_ms)
         if min_delay_ms is not None:
-            pulumi.set(__self__, "min_delay_ms", min_delay_ms)
+            _setter("min_delay_ms", min_delay_ms)
 
     @property
     @pulumi.getter
