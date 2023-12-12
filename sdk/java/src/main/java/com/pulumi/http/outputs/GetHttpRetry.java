@@ -86,11 +86,11 @@ public final class GetHttpRetry {
             return this;
         }
         public GetHttpRetry build() {
-            final var _resultValue = new GetHttpRetry();
-            _resultValue.attempts = attempts;
-            _resultValue.maxDelayMs = maxDelayMs;
-            _resultValue.minDelayMs = minDelayMs;
-            return _resultValue;
+            final var o = new GetHttpRetry();
+            o.attempts = attempts;
+            o.maxDelayMs = maxDelayMs;
+            o.minDelayMs = minDelayMs;
+            return o;
         }
     }
 }
