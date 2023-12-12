@@ -307,22 +307,22 @@ public final class GetHttpResult {
             return this;
         }
         public GetHttpResult build() {
-            final var o = new GetHttpResult();
-            o.body = body;
-            o.caCertPem = caCertPem;
-            o.id = id;
-            o.insecure = insecure;
-            o.method = method;
-            o.requestBody = requestBody;
-            o.requestHeaders = requestHeaders;
-            o.requestTimeoutMs = requestTimeoutMs;
-            o.responseBody = responseBody;
-            o.responseBodyBase64 = responseBodyBase64;
-            o.responseHeaders = responseHeaders;
-            o.retry = retry;
-            o.statusCode = statusCode;
-            o.url = url;
-            return o;
+            final var _resultValue = new GetHttpResult();
+            _resultValue.body = body;
+            _resultValue.caCertPem = caCertPem;
+            _resultValue.id = id;
+            _resultValue.insecure = insecure;
+            _resultValue.method = method;
+            _resultValue.requestBody = requestBody;
+            _resultValue.requestHeaders = requestHeaders;
+            _resultValue.requestTimeoutMs = requestTimeoutMs;
+            _resultValue.responseBody = responseBody;
+            _resultValue.responseBodyBase64 = responseBodyBase64;
+            _resultValue.responseHeaders = responseHeaders;
+            _resultValue.retry = retry;
+            _resultValue.statusCode = statusCode;
+            _resultValue.url = url;
+            return _resultValue;
         }
     }
 }
