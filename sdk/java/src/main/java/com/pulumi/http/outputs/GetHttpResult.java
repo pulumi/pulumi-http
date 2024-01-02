@@ -4,6 +4,7 @@
 package com.pulumi.http.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.http.outputs.GetHttpRetry;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -238,72 +239,100 @@ public final class GetHttpResult {
 
         @CustomType.Setter
         public Builder body(String body) {
-            this.body = Objects.requireNonNull(body);
+            if (body == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "body");
+            }
+            this.body = body;
             return this;
         }
         @CustomType.Setter
         public Builder caCertPem(@Nullable String caCertPem) {
+
             this.caCertPem = caCertPem;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder insecure(@Nullable Boolean insecure) {
+
             this.insecure = insecure;
             return this;
         }
         @CustomType.Setter
         public Builder method(@Nullable String method) {
+
             this.method = method;
             return this;
         }
         @CustomType.Setter
         public Builder requestBody(@Nullable String requestBody) {
+
             this.requestBody = requestBody;
             return this;
         }
         @CustomType.Setter
         public Builder requestHeaders(@Nullable Map<String,String> requestHeaders) {
+
             this.requestHeaders = requestHeaders;
             return this;
         }
         @CustomType.Setter
         public Builder requestTimeoutMs(@Nullable Integer requestTimeoutMs) {
+
             this.requestTimeoutMs = requestTimeoutMs;
             return this;
         }
         @CustomType.Setter
         public Builder responseBody(String responseBody) {
-            this.responseBody = Objects.requireNonNull(responseBody);
+            if (responseBody == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "responseBody");
+            }
+            this.responseBody = responseBody;
             return this;
         }
         @CustomType.Setter
         public Builder responseBodyBase64(String responseBodyBase64) {
-            this.responseBodyBase64 = Objects.requireNonNull(responseBodyBase64);
+            if (responseBodyBase64 == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "responseBodyBase64");
+            }
+            this.responseBodyBase64 = responseBodyBase64;
             return this;
         }
         @CustomType.Setter
         public Builder responseHeaders(Map<String,String> responseHeaders) {
-            this.responseHeaders = Objects.requireNonNull(responseHeaders);
+            if (responseHeaders == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "responseHeaders");
+            }
+            this.responseHeaders = responseHeaders;
             return this;
         }
         @CustomType.Setter
         public Builder retry(@Nullable GetHttpRetry retry) {
+
             this.retry = retry;
             return this;
         }
         @CustomType.Setter
         public Builder statusCode(Integer statusCode) {
-            this.statusCode = Objects.requireNonNull(statusCode);
+            if (statusCode == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "statusCode");
+            }
+            this.statusCode = statusCode;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("GetHttpResult", "url");
+            }
+            this.url = url;
             return this;
         }
         public GetHttpResult build() {
