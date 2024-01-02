@@ -72,16 +72,19 @@ public final class GetHttpRetry {
 
         @CustomType.Setter
         public Builder attempts(@Nullable Integer attempts) {
+
             this.attempts = attempts;
             return this;
         }
         @CustomType.Setter
         public Builder maxDelayMs(@Nullable Integer maxDelayMs) {
+
             this.maxDelayMs = maxDelayMs;
             return this;
         }
         @CustomType.Setter
         public Builder minDelayMs(@Nullable Integer minDelayMs) {
+
             this.minDelayMs = minDelayMs;
             return this;
         }
