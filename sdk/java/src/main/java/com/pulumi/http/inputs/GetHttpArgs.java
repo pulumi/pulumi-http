@@ -5,6 +5,7 @@ package com.pulumi.http.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.http.inputs.GetHttpRetryArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -339,7 +340,9 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetHttpArgs build() {
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("GetHttpArgs", "url");
+            }
             return $;
         }
     }
