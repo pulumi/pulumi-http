@@ -6,6 +6,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "functions": {
             "http:index/getHttp:getHttp": "http"
