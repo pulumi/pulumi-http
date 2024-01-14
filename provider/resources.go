@@ -15,9 +15,10 @@
 package provider
 
 import (
-	_ "embed" // Embed bridge metadata
 	"os"
 	"path"
+
+	_ "embed" // Embed bridge metadata
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
