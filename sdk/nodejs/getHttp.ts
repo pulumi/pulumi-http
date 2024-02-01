@@ -49,9 +49,6 @@ export interface GetHttpArgs {
      * The request timeout in milliseconds.
      */
     requestTimeoutMs?: number;
-    /**
-     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-     */
     retry?: inputs.GetHttpRetry;
     /**
      * The URL for the request. Supported schemes are `http.getHttp` and `https`.
@@ -109,9 +106,6 @@ export interface GetHttpResult {
      * A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).
      */
     readonly responseHeaders: {[key: string]: string};
-    /**
-     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-     */
     readonly retry?: outputs.GetHttpRetry;
     /**
      * The HTTP response status code.
@@ -154,9 +148,6 @@ export interface GetHttpOutputArgs {
      * The request timeout in milliseconds.
      */
     requestTimeoutMs?: pulumi.Input<number>;
-    /**
-     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-     */
     retry?: pulumi.Input<inputs.GetHttpRetryArgs>;
     /**
      * The URL for the request. Supported schemes are `http.getHttp` and `https`.
