@@ -75,10 +75,6 @@ public final class GetHttpResult {
      * 
      */
     private Map<String,String> responseHeaders;
-    /**
-     * @return Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-     * 
-     */
     private @Nullable GetHttpRetry retry;
     /**
      * @return The HTTP response status code.
@@ -173,10 +169,6 @@ public final class GetHttpResult {
     public Map<String,String> responseHeaders() {
         return this.responseHeaders;
     }
-    /**
-     * @return Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-     * 
-     */
     public Optional<GetHttpRetry> retry() {
         return Optional.ofNullable(this.retry);
     }

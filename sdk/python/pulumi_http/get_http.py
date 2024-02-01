@@ -161,9 +161,6 @@ class GetHttpResult:
     @property
     @pulumi.getter
     def retry(self) -> Optional['outputs.GetHttpRetryResult']:
-        """
-        Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-        """
         return pulumi.get(self, "retry")
 
     @property
@@ -223,7 +220,6 @@ def get_http(ca_cert_pem: Optional[str] = None,
     :param str request_body: The request body as a string.
     :param Mapping[str, str] request_headers: A map of request header field names and values.
     :param int request_timeout_ms: The request timeout in milliseconds.
-    :param pulumi.InputType['GetHttpRetryArgs'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     __args__ = dict()
@@ -274,7 +270,6 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[str]]] = None,
     :param str request_body: The request body as a string.
     :param Mapping[str, str] request_headers: A map of request header field names and values.
     :param int request_timeout_ms: The request timeout in milliseconds.
-    :param pulumi.InputType['GetHttpRetryArgs'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     ...
