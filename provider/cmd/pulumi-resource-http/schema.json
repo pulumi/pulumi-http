@@ -105,8 +105,7 @@
                         "description": "The request timeout in milliseconds.\n"
                     },
                     "retry": {
-                        "$ref": "#/types/http:index/getHttpRetry:getHttpRetry",
-                        "description": "Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).\n"
+                        "$ref": "#/types/http:index/getHttpRetry:getHttpRetry"
                     },
                     "url": {
                         "type": "string",
@@ -173,8 +172,7 @@
                         "description": "A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).\n"
                     },
                     "retry": {
-                        "$ref": "#/types/http:index/getHttpRetry:getHttpRetry",
-                        "description": "Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).\n"
+                        "$ref": "#/types/http:index/getHttpRetry:getHttpRetry"
                     },
                     "statusCode": {
                         "type": "integer",
