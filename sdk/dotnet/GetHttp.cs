@@ -63,9 +63,6 @@ namespace Pulumi.Http
         [Input("requestTimeoutMs")]
         public int? RequestTimeoutMs { get; set; }
 
-        /// <summary>
-        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-        /// </summary>
         [Input("retry")]
         public Inputs.GetHttpRetryArgs? Retry { get; set; }
 
@@ -125,9 +122,6 @@ namespace Pulumi.Http
         [Input("requestTimeoutMs")]
         public Input<int>? RequestTimeoutMs { get; set; }
 
-        /// <summary>
-        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-        /// </summary>
         [Input("retry")]
         public Input<Inputs.GetHttpRetryInputArgs>? Retry { get; set; }
 
@@ -191,9 +185,6 @@ namespace Pulumi.Http
         /// A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).
         /// </summary>
         public readonly ImmutableDictionary<string, string> ResponseHeaders;
-        /// <summary>
-        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
-        /// </summary>
         public readonly Outputs.GetHttpRetryResult? Retry;
         /// <summary>
         /// The HTTP response status code.
