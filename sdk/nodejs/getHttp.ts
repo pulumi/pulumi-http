@@ -63,7 +63,7 @@ export interface GetHttpResult {
     /**
      * The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
      *
-     * @deprecated Use response_body instead
+     * @deprecated Use responseBody instead
      */
     readonly body: string;
     /**
