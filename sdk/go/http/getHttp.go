@@ -44,7 +44,7 @@ type GetHttpArgs struct {
 type GetHttpResult struct {
 	// The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
 	//
-	// Deprecated: Use responseBody instead
+	// Deprecated: Use response_body instead
 	Body string `pulumi:"body"`
 	// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
 	CaCertPem *string `pulumi:"caCertPem"`
@@ -126,7 +126,7 @@ func (o GetHttpResultOutput) ToGetHttpResultOutputWithContext(ctx context.Contex
 
 // The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
 //
-// Deprecated: Use responseBody instead
+// Deprecated: Use response_body instead
 func (o GetHttpResultOutput) Body() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHttpResult) string { return v.Body }).(pulumi.StringOutput)
 }
