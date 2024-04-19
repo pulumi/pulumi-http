@@ -121,69 +121,68 @@
                 "description": "A collection of values returned by getHttp.\n",
                 "properties": {
                     "body": {
-                        "type": "string",
+                        "deprecationMessage": "Use response_body instead",
                         "description": "The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.\n",
-                        "deprecationMessage": "Use response_body instead"
+                        "type": "string"
                     },
                     "caCertPem": {
-                        "type": "string",
-                        "description": "Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n"
+                        "description": "Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n",
+                        "type": "string"
                     },
                     "id": {
-                        "type": "string",
-                        "description": "The URL used for the request.\n"
+                        "description": "The URL used for the request.\n",
+                        "type": "string"
                     },
                     "insecure": {
-                        "type": "boolean",
-                        "description": "Disables verification of the server's certificate chain and hostname. Defaults to `false`\n"
+                        "description": "Disables verification of the server's certificate chain and hostname. Defaults to `false`\n",
+                        "type": "boolean"
                     },
                     "method": {
-                        "type": "string",
-                        "description": "The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.\n"
+                        "description": "The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.\n",
+                        "type": "string"
                     },
                     "requestBody": {
-                        "type": "string",
-                        "description": "The request body as a string.\n"
+                        "description": "The request body as a string.\n",
+                        "type": "string"
                     },
                     "requestHeaders": {
-                        "type": "object",
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of request header field names and values.\n"
+                        "description": "A map of request header field names and values.\n",
+                        "type": "object"
                     },
                     "requestTimeoutMs": {
-                        "type": "integer",
-                        "description": "The request timeout in milliseconds.\n"
+                        "description": "The request timeout in milliseconds.\n",
+                        "type": "integer"
                     },
                     "responseBody": {
-                        "type": "string",
-                        "description": "The response body returned as a string.\n"
+                        "description": "The response body returned as a string.\n",
+                        "type": "string"
                     },
                     "responseBodyBase64": {
-                        "type": "string",
-                        "description": "The response body encoded as base64 (standard) as defined in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648#section-4).\n"
+                        "description": "The response body encoded as base64 (standard) as defined in [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648#section-4).\n",
+                        "type": "string"
                     },
                     "responseHeaders": {
-                        "type": "object",
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).\n"
+                        "description": "A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).\n",
+                        "type": "object"
                     },
                     "retry": {
                         "$ref": "#/types/http:index/getHttpRetry:getHttpRetry"
                     },
                     "statusCode": {
-                        "type": "integer",
-                        "description": "The HTTP response status code.\n"
+                        "description": "The HTTP response status code.\n",
+                        "type": "integer"
                     },
                     "url": {
-                        "type": "string",
-                        "description": "The URL for the request. Supported schemes are `http.getHttp` and `https`.\n"
+                        "description": "The URL for the request. Supported schemes are `http.getHttp` and `https`.\n",
+                        "type": "string"
                     }
                 },
-                "type": "object",
                 "required": [
                     "body",
                     "id",
@@ -192,7 +191,8 @@
                     "responseHeaders",
                     "statusCode",
                     "url"
-                ]
+                ],
+                "type": "object"
             }
         }
     }
