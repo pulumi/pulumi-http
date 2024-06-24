@@ -69,13 +69,11 @@ class GetHttpResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Use response_body instead""")
     def body(self) -> str:
         """
         The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.
         """
-        warnings.warn("""Use response_body instead""", DeprecationWarning)
-        pulumi.log.warn("""body is deprecated: Use response_body instead""")
-
         return pulumi.get(self, "body")
 
     @property
