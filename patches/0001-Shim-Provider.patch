@@ -1,3 +1,9 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ian Wahbe <ian@wahbe.com>
+Date: Mon, 5 Aug 2024 12:21:14 +0200
+Subject: [PATCH] Shim Provider
+
+
 diff --git a/pulumi-shim/pf.go b/pulumi-shim/pf.go
 new file mode 100644
 index 0000000..ce8e3ec
