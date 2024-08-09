@@ -206,7 +206,7 @@ def get_http(ca_cert_pem: Optional[str] = None,
              request_body: Optional[str] = None,
              request_headers: Optional[Mapping[str, str]] = None,
              request_timeout_ms: Optional[int] = None,
-             retry: Optional[pulumi.InputType['GetHttpRetryArgs']] = None,
+             retry: Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict']] = None,
              url: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHttpResult:
     """
@@ -256,7 +256,7 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[str]]] = None,
                     request_body: Optional[pulumi.Input[Optional[str]]] = None,
                     request_headers: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                     request_timeout_ms: Optional[pulumi.Input[Optional[int]]] = None,
-                    retry: Optional[pulumi.Input[Optional[pulumi.InputType['GetHttpRetryArgs']]]] = None,
+                    retry: Optional[pulumi.Input[Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict']]]] = None,
                     url: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHttpResult]:
     """
