@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getHttp(args: GetHttpArgs, opts?: pulumi.InvokeOptions): Promise<GetHttpResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("http:index/getHttp:getHttp", {
         "caCertPem": args.caCertPem,
@@ -117,7 +116,17 @@ export interface GetHttpResult {
     readonly url: string;
 }
 export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHttpResult> {
-    return pulumi.output(args).apply((a: any) => getHttp(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("http:index/getHttp:getHttp", {
+        "caCertPem": args.caCertPem,
+        "insecure": args.insecure,
+        "method": args.method,
+        "requestBody": args.requestBody,
+        "requestHeaders": args.requestHeaders,
+        "requestTimeoutMs": args.requestTimeoutMs,
+        "retry": args.retry,
+        "url": args.url,
+    }, opts);
 }
 
 /**
