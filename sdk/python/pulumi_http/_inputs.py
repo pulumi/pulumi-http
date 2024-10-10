@@ -4,14 +4,39 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'GetHttpRetryArgs',
+    'GetHttpRetryArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class GetHttpRetryArgsDict(TypedDict):
+        attempts: NotRequired[int]
+        """
+        The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
+        """
+        max_delay_ms: NotRequired[int]
+        """
+        The maximum delay between retry requests in milliseconds.
+        """
+        min_delay_ms: NotRequired[int]
+        """
+        The minimum delay between retry requests in milliseconds.
+        """
+elif False:
+    GetHttpRetryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetHttpRetryArgs:
