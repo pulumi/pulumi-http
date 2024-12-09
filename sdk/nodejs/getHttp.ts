@@ -115,7 +115,7 @@ export interface GetHttpResult {
      */
     readonly url: string;
 }
-export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHttpResult> {
+export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetHttpResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("http:index/getHttp:getHttp", {
         "caCertPem": args.caCertPem,
