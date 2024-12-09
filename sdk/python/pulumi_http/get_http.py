@@ -260,7 +260,7 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[str]]] = None,
                     request_timeout_ms: Optional[pulumi.Input[Optional[int]]] = None,
                     retry: Optional[pulumi.Input[Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict']]]] = None,
                     url: Optional[pulumi.Input[str]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHttpResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHttpResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -281,7 +281,7 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['requestTimeoutMs'] = request_timeout_ms
     __args__['retry'] = retry
     __args__['url'] = url
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('http:index/getHttp:getHttp', __args__, opts=opts, typ=GetHttpResult)
     return __ret__.apply(lambda __response__: GetHttpResult(
         body=pulumi.get(__response__, 'body'),
