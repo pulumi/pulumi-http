@@ -16,6 +16,9 @@ namespace Pulumi.Http
 
         public static Output<GetHttpResult> Invoke(GetHttpInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetHttpResult>("http:index/getHttp:getHttp", args ?? new GetHttpInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetHttpResult> Invoke(GetHttpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetHttpResult>("http:index/getHttp:getHttp", args ?? new GetHttpInvokeArgs(), options.WithDefaults());
     }
 
 
