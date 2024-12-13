@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.http.Utilities;
 import com.pulumi.http.inputs.GetHttpArgs;
 import com.pulumi.http.inputs.GetHttpPlainArgs;
@@ -21,6 +22,9 @@ public final class HttpFunctions {
         return getHttpPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetHttpResult> getHttp(GetHttpArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("http:index/getHttp:getHttp", TypeShape.of(GetHttpResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetHttpResult> getHttp(GetHttpArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("http:index/getHttp:getHttp", TypeShape.of(GetHttpResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetHttpResult> getHttpPlain(GetHttpPlainArgs args, InvokeOptions options) {
