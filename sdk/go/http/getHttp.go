@@ -74,21 +74,11 @@ type GetHttpResult struct {
 }
 
 func GetHttpOutput(ctx *pulumi.Context, args GetHttpOutputArgs, opts ...pulumi.InvokeOption) GetHttpResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetHttpResultOutput, error) {
 			args := v.(GetHttpArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetHttpResult
-			secret, err := ctx.InvokePackageRaw("http:index/getHttp:getHttp", args, &rv, "", opts...)
-			if err != nil {
-				return GetHttpResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetHttpResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetHttpResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("http:index/getHttp:getHttp", args, GetHttpResultOutput{}, options).(GetHttpResultOutput), nil
 		}).(GetHttpResultOutput)
 }
 
