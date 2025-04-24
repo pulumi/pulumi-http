@@ -21,18 +21,48 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetHttpArgs Empty = new GetHttpArgs();
 
     /**
-     * Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     @Import(name="caCertPem")
     private @Nullable Output<String> caCertPem;
 
     /**
-     * @return Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     public Optional<Output<String>> caCertPem() {
         return Optional.ofNullable(this.caCertPem);
+    }
+
+    /**
+     * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    @Import(name="clientCertPem")
+    private @Nullable Output<String> clientCertPem;
+
+    /**
+     * @return Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<Output<String>> clientCertPem() {
+        return Optional.ofNullable(this.clientCertPem);
+    }
+
+    /**
+     * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    @Import(name="clientKeyPem")
+    private @Nullable Output<String> clientKeyPem;
+
+    /**
+     * @return Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<Output<String>> clientKeyPem() {
+        return Optional.ofNullable(this.clientKeyPem);
     }
 
     /**
@@ -136,6 +166,8 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetHttpArgs(GetHttpArgs $) {
         this.caCertPem = $.caCertPem;
+        this.clientCertPem = $.clientCertPem;
+        this.clientKeyPem = $.clientKeyPem;
         this.insecure = $.insecure;
         this.method = $.method;
         this.requestBody = $.requestBody;
@@ -164,7 +196,7 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param caCertPem Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * @param caCertPem Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
          * 
          * @return builder
          * 
@@ -175,13 +207,55 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param caCertPem Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * @param caCertPem Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
          * 
          * @return builder
          * 
          */
         public Builder caCertPem(String caCertPem) {
             return caCertPem(Output.of(caCertPem));
+        }
+
+        /**
+         * @param clientCertPem Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientCertPem(@Nullable Output<String> clientCertPem) {
+            $.clientCertPem = clientCertPem;
+            return this;
+        }
+
+        /**
+         * @param clientCertPem Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientCertPem(String clientCertPem) {
+            return clientCertPem(Output.of(clientCertPem));
+        }
+
+        /**
+         * @param clientKeyPem Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyPem(@Nullable Output<String> clientKeyPem) {
+            $.clientKeyPem = clientKeyPem;
+            return this;
+        }
+
+        /**
+         * @param clientKeyPem Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyPem(String clientKeyPem) {
+            return clientKeyPem(Output.of(clientKeyPem));
         }
 
         /**

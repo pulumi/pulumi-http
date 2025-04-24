@@ -25,10 +25,22 @@ namespace Pulumi.Http
     public sealed class GetHttpArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
         /// </summary>
         [Input("caCertPem")]
         public string? CaCertPem { get; set; }
+
+        /// <summary>
+        /// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        [Input("clientCertPem")]
+        public string? ClientCertPem { get; set; }
+
+        /// <summary>
+        /// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        [Input("clientKeyPem")]
+        public string? ClientKeyPem { get; set; }
 
         /// <summary>
         /// Disables verification of the server's certificate chain and hostname. Defaults to `false`
@@ -84,10 +96,22 @@ namespace Pulumi.Http
     public sealed class GetHttpInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
         /// </summary>
         [Input("caCertPem")]
         public Input<string>? CaCertPem { get; set; }
+
+        /// <summary>
+        /// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        [Input("clientCertPem")]
+        public Input<string>? ClientCertPem { get; set; }
+
+        /// <summary>
+        /// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        [Input("clientKeyPem")]
+        public Input<string>? ClientKeyPem { get; set; }
 
         /// <summary>
         /// Disables verification of the server's certificate chain and hostname. Defaults to `false`
@@ -149,9 +173,17 @@ namespace Pulumi.Http
         /// </summary>
         public readonly string Body;
         /// <summary>
-        /// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
         /// </summary>
         public readonly string? CaCertPem;
+        /// <summary>
+        /// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        public readonly string? ClientCertPem;
+        /// <summary>
+        /// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        /// </summary>
+        public readonly string? ClientKeyPem;
         /// <summary>
         /// The URL used for the request.
         /// </summary>
@@ -204,6 +236,10 @@ namespace Pulumi.Http
 
             string? caCertPem,
 
+            string? clientCertPem,
+
+            string? clientKeyPem,
+
             string id,
 
             bool? insecure,
@@ -230,6 +266,8 @@ namespace Pulumi.Http
         {
             Body = body;
             CaCertPem = caCertPem;
+            ClientCertPem = clientCertPem;
+            ClientKeyPem = clientKeyPem;
             Id = id;
             Insecure = insecure;
             Method = method;

@@ -23,8 +23,12 @@ func GetHttp(ctx *pulumi.Context, args *GetHttpArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getHttp.
 type GetHttpArgs struct {
-	// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
 	CaCertPem *string `pulumi:"caCertPem"`
+	// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientCertPem *string `pulumi:"clientCertPem"`
+	// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientKeyPem *string `pulumi:"clientKeyPem"`
 	// Disables verification of the server's certificate chain and hostname. Defaults to `false`
 	Insecure *bool `pulumi:"insecure"`
 	// The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.
@@ -46,8 +50,12 @@ type GetHttpResult struct {
 	//
 	// Deprecated: Use responseBody instead
 	Body string `pulumi:"body"`
-	// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
 	CaCertPem *string `pulumi:"caCertPem"`
+	// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientCertPem *string `pulumi:"clientCertPem"`
+	// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientKeyPem *string `pulumi:"clientKeyPem"`
 	// The URL used for the request.
 	Id string `pulumi:"id"`
 	// Disables verification of the server's certificate chain and hostname. Defaults to `false`
@@ -84,8 +92,12 @@ func GetHttpOutput(ctx *pulumi.Context, args GetHttpOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getHttp.
 type GetHttpOutputArgs struct {
-	// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
 	CaCertPem pulumi.StringPtrInput `pulumi:"caCertPem"`
+	// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientCertPem pulumi.StringPtrInput `pulumi:"clientCertPem"`
+	// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+	ClientKeyPem pulumi.StringPtrInput `pulumi:"clientKeyPem"`
 	// Disables verification of the server's certificate chain and hostname. Defaults to `false`
 	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.
@@ -127,9 +139,19 @@ func (o GetHttpResultOutput) Body() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHttpResult) string { return v.Body }).(pulumi.StringOutput)
 }
 
-// Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+// Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
 func (o GetHttpResultOutput) CaCertPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetHttpResult) *string { return v.CaCertPem }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+func (o GetHttpResultOutput) ClientCertPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetHttpResult) *string { return v.ClientCertPem }).(pulumi.StringPtrOutput)
+}
+
+// Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+func (o GetHttpResultOutput) ClientKeyPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetHttpResult) *string { return v.ClientKeyPem }).(pulumi.StringPtrOutput)
 }
 
 // The URL used for the request.

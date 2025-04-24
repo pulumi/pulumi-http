@@ -20,18 +20,48 @@ public final class GetHttpPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetHttpPlainArgs Empty = new GetHttpPlainArgs();
 
     /**
-     * Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     @Import(name="caCertPem")
     private @Nullable String caCertPem;
 
     /**
-     * @return Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     public Optional<String> caCertPem() {
         return Optional.ofNullable(this.caCertPem);
+    }
+
+    /**
+     * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    @Import(name="clientCertPem")
+    private @Nullable String clientCertPem;
+
+    /**
+     * @return Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<String> clientCertPem() {
+        return Optional.ofNullable(this.clientCertPem);
+    }
+
+    /**
+     * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    @Import(name="clientKeyPem")
+    private @Nullable String clientKeyPem;
+
+    /**
+     * @return Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<String> clientKeyPem() {
+        return Optional.ofNullable(this.clientKeyPem);
     }
 
     /**
@@ -135,6 +165,8 @@ public final class GetHttpPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetHttpPlainArgs(GetHttpPlainArgs $) {
         this.caCertPem = $.caCertPem;
+        this.clientCertPem = $.clientCertPem;
+        this.clientKeyPem = $.clientKeyPem;
         this.insecure = $.insecure;
         this.method = $.method;
         this.requestBody = $.requestBody;
@@ -163,13 +195,35 @@ public final class GetHttpPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param caCertPem Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * @param caCertPem Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
          * 
          * @return builder
          * 
          */
         public Builder caCertPem(@Nullable String caCertPem) {
             $.caCertPem = caCertPem;
+            return this;
+        }
+
+        /**
+         * @param clientCertPem Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientCertPem(@Nullable String clientCertPem) {
+            $.clientCertPem = clientCertPem;
+            return this;
+        }
+
+        /**
+         * @param clientKeyPem Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyPem(@Nullable String clientKeyPem) {
+            $.clientKeyPem = clientKeyPem;
             return this;
         }
 
