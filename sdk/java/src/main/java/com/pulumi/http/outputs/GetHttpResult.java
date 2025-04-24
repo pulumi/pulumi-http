@@ -26,10 +26,20 @@ public final class GetHttpResult {
     @Deprecated /* Use response_body instead */
     private String body;
     /**
-     * @return Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     private @Nullable String caCertPem;
+    /**
+     * @return Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    private @Nullable String clientCertPem;
+    /**
+     * @return Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    private @Nullable String clientKeyPem;
     /**
      * @return The URL used for the request.
      * 
@@ -100,11 +110,25 @@ public final class GetHttpResult {
         return this.body;
     }
     /**
-     * @return Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      * 
      */
     public Optional<String> caCertPem() {
         return Optional.ofNullable(this.caCertPem);
+    }
+    /**
+     * @return Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<String> clientCertPem() {
+        return Optional.ofNullable(this.clientCertPem);
+    }
+    /**
+     * @return Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * 
+     */
+    public Optional<String> clientKeyPem() {
+        return Optional.ofNullable(this.clientKeyPem);
     }
     /**
      * @return The URL used for the request.
@@ -198,6 +222,8 @@ public final class GetHttpResult {
     public static final class Builder {
         private String body;
         private @Nullable String caCertPem;
+        private @Nullable String clientCertPem;
+        private @Nullable String clientKeyPem;
         private String id;
         private @Nullable Boolean insecure;
         private @Nullable String method;
@@ -215,6 +241,8 @@ public final class GetHttpResult {
     	      Objects.requireNonNull(defaults);
     	      this.body = defaults.body;
     	      this.caCertPem = defaults.caCertPem;
+    	      this.clientCertPem = defaults.clientCertPem;
+    	      this.clientKeyPem = defaults.clientKeyPem;
     	      this.id = defaults.id;
     	      this.insecure = defaults.insecure;
     	      this.method = defaults.method;
@@ -241,6 +269,18 @@ public final class GetHttpResult {
         public Builder caCertPem(@Nullable String caCertPem) {
 
             this.caCertPem = caCertPem;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientCertPem(@Nullable String clientCertPem) {
+
+            this.clientCertPem = clientCertPem;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientKeyPem(@Nullable String clientKeyPem) {
+
+            this.clientKeyPem = clientKeyPem;
             return this;
         }
         @CustomType.Setter
@@ -331,6 +371,8 @@ public final class GetHttpResult {
             final var _resultValue = new GetHttpResult();
             _resultValue.body = body;
             _resultValue.caCertPem = caCertPem;
+            _resultValue.clientCertPem = clientCertPem;
+            _resultValue.clientKeyPem = clientKeyPem;
             _resultValue.id = id;
             _resultValue.insecure = insecure;
             _resultValue.method = method;

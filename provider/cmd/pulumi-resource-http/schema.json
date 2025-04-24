@@ -77,7 +77,15 @@
                 "properties": {
                     "caCertPem": {
                         "type": "string",
-                        "description": "Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n"
+                        "description": "Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n"
+                    },
+                    "clientCertPem": {
+                        "type": "string",
+                        "description": "Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n"
+                    },
+                    "clientKeyPem": {
+                        "type": "string",
+                        "description": "Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n"
                     },
                     "insecure": {
                         "type": "boolean",
@@ -124,7 +132,15 @@
                         "type": "string"
                     },
                     "caCertPem": {
-                        "description": "Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n",
+                        "description": "Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n",
+                        "type": "string"
+                    },
+                    "clientCertPem": {
+                        "description": "Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n",
+                        "type": "string"
+                    },
+                    "clientKeyPem": {
+                        "description": "Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.\n",
                         "type": "string"
                     },
                     "id": {

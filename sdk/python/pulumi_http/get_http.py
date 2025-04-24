@@ -29,13 +29,19 @@ class GetHttpResult:
     """
     A collection of values returned by getHttp.
     """
-    def __init__(__self__, body=None, ca_cert_pem=None, id=None, insecure=None, method=None, request_body=None, request_headers=None, request_timeout_ms=None, response_body=None, response_body_base64=None, response_headers=None, retry=None, status_code=None, url=None):
+    def __init__(__self__, body=None, ca_cert_pem=None, client_cert_pem=None, client_key_pem=None, id=None, insecure=None, method=None, request_body=None, request_headers=None, request_timeout_ms=None, response_body=None, response_body_base64=None, response_headers=None, retry=None, status_code=None, url=None):
         if body and not isinstance(body, str):
             raise TypeError("Expected argument 'body' to be a str")
         pulumi.set(__self__, "body", body)
         if ca_cert_pem and not isinstance(ca_cert_pem, str):
             raise TypeError("Expected argument 'ca_cert_pem' to be a str")
         pulumi.set(__self__, "ca_cert_pem", ca_cert_pem)
+        if client_cert_pem and not isinstance(client_cert_pem, str):
+            raise TypeError("Expected argument 'client_cert_pem' to be a str")
+        pulumi.set(__self__, "client_cert_pem", client_cert_pem)
+        if client_key_pem and not isinstance(client_key_pem, str):
+            raise TypeError("Expected argument 'client_key_pem' to be a str")
+        pulumi.set(__self__, "client_key_pem", client_key_pem)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -86,9 +92,25 @@ class GetHttpResult:
     @pulumi.getter(name="caCertPem")
     def ca_cert_pem(self) -> Optional[builtins.str]:
         """
-        Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
         """
         return pulumi.get(self, "ca_cert_pem")
+
+    @property
+    @pulumi.getter(name="clientCertPem")
+    def client_cert_pem(self) -> Optional[builtins.str]:
+        """
+        Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        """
+        return pulumi.get(self, "client_cert_pem")
+
+    @property
+    @pulumi.getter(name="clientKeyPem")
+    def client_key_pem(self) -> Optional[builtins.str]:
+        """
+        Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+        """
+        return pulumi.get(self, "client_key_pem")
 
     @property
     @pulumi.getter
@@ -192,6 +214,8 @@ class AwaitableGetHttpResult(GetHttpResult):
         return GetHttpResult(
             body=self.body,
             ca_cert_pem=self.ca_cert_pem,
+            client_cert_pem=self.client_cert_pem,
+            client_key_pem=self.client_key_pem,
             id=self.id,
             insecure=self.insecure,
             method=self.method,
@@ -207,6 +231,8 @@ class AwaitableGetHttpResult(GetHttpResult):
 
 
 def get_http(ca_cert_pem: Optional[builtins.str] = None,
+             client_cert_pem: Optional[builtins.str] = None,
+             client_key_pem: Optional[builtins.str] = None,
              insecure: Optional[builtins.bool] = None,
              method: Optional[builtins.str] = None,
              request_body: Optional[builtins.str] = None,
@@ -218,7 +244,9 @@ def get_http(ca_cert_pem: Optional[builtins.str] = None,
     """
     Use this data source to access information about an existing resource.
 
-    :param builtins.str ca_cert_pem: Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str ca_cert_pem: Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str client_cert_pem: Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str client_key_pem: Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
     :param builtins.bool insecure: Disables verification of the server's certificate chain and hostname. Defaults to `false`
     :param builtins.str method: The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.
     :param builtins.str request_body: The request body as a string.
@@ -228,6 +256,8 @@ def get_http(ca_cert_pem: Optional[builtins.str] = None,
     """
     __args__ = dict()
     __args__['caCertPem'] = ca_cert_pem
+    __args__['clientCertPem'] = client_cert_pem
+    __args__['clientKeyPem'] = client_key_pem
     __args__['insecure'] = insecure
     __args__['method'] = method
     __args__['requestBody'] = request_body
@@ -241,6 +271,8 @@ def get_http(ca_cert_pem: Optional[builtins.str] = None,
     return AwaitableGetHttpResult(
         body=pulumi.get(__ret__, 'body'),
         ca_cert_pem=pulumi.get(__ret__, 'ca_cert_pem'),
+        client_cert_pem=pulumi.get(__ret__, 'client_cert_pem'),
+        client_key_pem=pulumi.get(__ret__, 'client_key_pem'),
         id=pulumi.get(__ret__, 'id'),
         insecure=pulumi.get(__ret__, 'insecure'),
         method=pulumi.get(__ret__, 'method'),
@@ -254,6 +286,8 @@ def get_http(ca_cert_pem: Optional[builtins.str] = None,
         status_code=pulumi.get(__ret__, 'status_code'),
         url=pulumi.get(__ret__, 'url'))
 def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                    client_cert_pem: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                    client_key_pem: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                     insecure: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
                     method: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                     request_body: Optional[pulumi.Input[Optional[builtins.str]]] = None,
@@ -265,7 +299,9 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[builtins.str]]] 
     """
     Use this data source to access information about an existing resource.
 
-    :param builtins.str ca_cert_pem: Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str ca_cert_pem: Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str client_cert_pem: Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+    :param builtins.str client_key_pem: Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
     :param builtins.bool insecure: Disables verification of the server's certificate chain and hostname. Defaults to `false`
     :param builtins.str method: The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.
     :param builtins.str request_body: The request body as a string.
@@ -275,6 +311,8 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[builtins.str]]] 
     """
     __args__ = dict()
     __args__['caCertPem'] = ca_cert_pem
+    __args__['clientCertPem'] = client_cert_pem
+    __args__['clientKeyPem'] = client_key_pem
     __args__['insecure'] = insecure
     __args__['method'] = method
     __args__['requestBody'] = request_body
@@ -287,6 +325,8 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[builtins.str]]] 
     return __ret__.apply(lambda __response__: GetHttpResult(
         body=pulumi.get(__response__, 'body'),
         ca_cert_pem=pulumi.get(__response__, 'ca_cert_pem'),
+        client_cert_pem=pulumi.get(__response__, 'client_cert_pem'),
+        client_key_pem=pulumi.get(__response__, 'client_key_pem'),
         id=pulumi.get(__response__, 'id'),
         insecure=pulumi.get(__response__, 'insecure'),
         method=pulumi.get(__response__, 'method'),

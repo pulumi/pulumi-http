@@ -10,6 +10,8 @@ export function getHttp(args: GetHttpArgs, opts?: pulumi.InvokeOptions): Promise
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("http:index/getHttp:getHttp", {
         "caCertPem": args.caCertPem,
+        "clientCertPem": args.clientCertPem,
+        "clientKeyPem": args.clientKeyPem,
         "insecure": args.insecure,
         "method": args.method,
         "requestBody": args.requestBody,
@@ -25,9 +27,17 @@ export function getHttp(args: GetHttpArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetHttpArgs {
     /**
-     * Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
     caCertPem?: string;
+    /**
+     * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    clientCertPem?: string;
+    /**
+     * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    clientKeyPem?: string;
     /**
      * Disables verification of the server's certificate chain and hostname. Defaults to `false`
      */
@@ -66,9 +76,17 @@ export interface GetHttpResult {
      */
     readonly body: string;
     /**
-     * Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
     readonly caCertPem?: string;
+    /**
+     * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    readonly clientCertPem?: string;
+    /**
+     * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    readonly clientKeyPem?: string;
     /**
      * The URL used for the request.
      */
@@ -119,6 +137,8 @@ export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOutpu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("http:index/getHttp:getHttp", {
         "caCertPem": args.caCertPem,
+        "clientCertPem": args.clientCertPem,
+        "clientKeyPem": args.clientKeyPem,
         "insecure": args.insecure,
         "method": args.method,
         "requestBody": args.requestBody,
@@ -134,9 +154,17 @@ export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOutpu
  */
 export interface GetHttpOutputArgs {
     /**
-     * Certificate data of the Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
     caCertPem?: pulumi.Input<string>;
+    /**
+     * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    clientCertPem?: pulumi.Input<string>;
+    /**
+     * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
+     */
+    clientKeyPem?: pulumi.Input<string>;
     /**
      * Disables verification of the server's certificate chain and hostname. Defaults to `false`
      */
