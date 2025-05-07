@@ -10,10 +10,8 @@ export const getHttp: typeof import("./getHttp").getHttp = null as any;
 export const getHttpOutput: typeof import("./getHttp").getHttpOutput = null as any;
 utilities.lazyLoad(exports, ["getHttp","getHttpOutput"], () => require("./getHttp"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 
 // Export sub-modules:
