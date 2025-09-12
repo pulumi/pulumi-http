@@ -5,6 +5,7 @@ makeTemplate: bridged
 publishRegistry: false
 esc:
   enabled: true
+  environment: imports/github-secrets # No repo-specific secrets.
 env:
   HTTP_TOKEN: ${{ secrets.HTTP_TOKEN }}
 pulumiConvert: 1
