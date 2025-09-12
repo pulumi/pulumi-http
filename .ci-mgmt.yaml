@@ -3,6 +3,8 @@ major-version: 0
 providerDefaultBranch: main
 makeTemplate: bridged
 publishRegistry: false
+esc:
+  enabled: true
 env:
   HTTP_TOKEN: ${{ secrets.HTTP_TOKEN }}
 pulumiConvert: 1
