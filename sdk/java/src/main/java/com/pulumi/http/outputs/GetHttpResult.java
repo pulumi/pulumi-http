@@ -17,13 +17,13 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetHttpResult {
     /**
-     * @return The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.
+     * @return The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
      * 
      * @deprecated
-     * Use response_body instead
+     * Use responseBody instead
      * 
      */
-    @Deprecated /* Use response_body instead */
+    @Deprecated /* Use responseBody instead */
     private String body;
     /**
      * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
@@ -99,13 +99,13 @@ public final class GetHttpResult {
 
     private GetHttpResult() {}
     /**
-     * @return The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.
+     * @return The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
      * 
      * @deprecated
-     * Use response_body instead
+     * Use responseBody instead
      * 
      */
-    @Deprecated /* Use response_body instead */
+    @Deprecated /* Use responseBody instead */
     public String body() {
         return this.body;
     }
