@@ -43,7 +43,7 @@ namespace Pulumi.Http
         public string? ClientKeyPem { get; set; }
 
         /// <summary>
-        /// Disables verification of the server's certificate chain and hostname. Defaults to `false`
+        /// Disables verification of the server's certificate chain and hostname. Defaults to `False`
         /// </summary>
         [Input("insecure")]
         public bool? Insecure { get; set; }
@@ -82,7 +82,7 @@ namespace Pulumi.Http
         public Inputs.GetHttpRetryArgs? Retry { get; set; }
 
         /// <summary>
-        /// The URL for the request. Supported schemes are `http.getHttp` and `https`.
+        /// The URL for the request. Supported schemes are `http.getHttp` and `Https`.
         /// </summary>
         [Input("url", required: true)]
         public string Url { get; set; } = null!;
@@ -114,7 +114,7 @@ namespace Pulumi.Http
         public Input<string>? ClientKeyPem { get; set; }
 
         /// <summary>
-        /// Disables verification of the server's certificate chain and hostname. Defaults to `false`
+        /// Disables verification of the server's certificate chain and hostname. Defaults to `False`
         /// </summary>
         [Input("insecure")]
         public Input<bool>? Insecure { get; set; }
@@ -153,7 +153,7 @@ namespace Pulumi.Http
         public Input<Inputs.GetHttpRetryInputArgs>? Retry { get; set; }
 
         /// <summary>
-        /// The URL for the request. Supported schemes are `http.getHttp` and `https`.
+        /// The URL for the request. Supported schemes are `http.getHttp` and `Https`.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
@@ -169,7 +169,7 @@ namespace Pulumi.Http
     public sealed class GetHttpResult
     {
         /// <summary>
-        /// The response body returned as a string. **NOTE**: This is deprecated, use `response_body` instead.
+        /// The response body returned as a string. **NOTE**: This is deprecated, use `ResponseBody` instead.
         /// </summary>
         public readonly string Body;
         /// <summary>
@@ -189,7 +189,7 @@ namespace Pulumi.Http
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Disables verification of the server's certificate chain and hostname. Defaults to `false`
+        /// Disables verification of the server's certificate chain and hostname. Defaults to `False`
         /// </summary>
         public readonly bool? Insecure;
         /// <summary>
@@ -226,7 +226,7 @@ namespace Pulumi.Http
         /// </summary>
         public readonly int StatusCode;
         /// <summary>
-        /// The URL for the request. Supported schemes are `http.getHttp` and `https`.
+        /// The URL for the request. Supported schemes are `http.getHttp` and `Https`.
         /// </summary>
         public readonly string Url;
 
