@@ -1,0 +1,6 @@
+# Root-level mise.toml to augment .config/mise.toml
+# See https://mise.jdx.dev/configuration.html
+
+[tools]
+# Add pulumi-converter-terraform plugin
+"vfox-pulumi:pulumi/pulumi-converter-terraform" = "1.2.4"
