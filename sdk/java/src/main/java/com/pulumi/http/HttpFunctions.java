@@ -15,18 +15,1018 @@ import com.pulumi.http.outputs.GetHttpResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class HttpFunctions {
+    /**
+     * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+     * information about the response.
+     * 
+     * The given URL may be either an `http.getHttp` or `https` URL. This resource
+     * will issue a warning if the result is not UTF-8 encoded.
+     * 
+     * &gt; **Important** Although `https` URLs can be used, there is currently no
+     * mechanism to authenticate the remote server except for general verification of
+     * the server certificate&#39;s chain of trust. Data retrieved from servers not under
+     * your control should be treated as untrustworthy.
+     * 
+     * By default, there are no retries. Configuring the retry block will result in
+     * retries if an error is returned by the client (e.g., connection errors) or if
+     * a 5xx-range (except 501) status code is received. For further details see
+     * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // The following example shows how to issue an HTTP GET request supplying
+     *         // an optional request header.
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP HEAD request.
+     *         final var exampleHead = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("HEAD")
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP POST request
+     *         // supplying an optional request body.
+     *         final var examplePost = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("POST")
+     *             .requestBody("request body")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Postcondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Precondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.random.Uuid;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleUuid = new Uuid("exampleUuid");
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Provisioner
+     * 
+     * Failure Behaviour
+     * can be leveraged within a provisioner in order to raise an error and stop applying.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.null.Resource;
+     * import com.pulumi.command.local.Command;
+     * import com.pulumi.command.local.CommandArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleResource = new Resource("exampleResource");
+     * 
+     *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
+     *             .create(StdFunctions.contains(Map.ofEntries(
+     *                 Map.entry("input", List.of(                
+     *                     201,
+     *                     204)),
+     *                 Map.entry("element", example.statusCode())
+     *             )).result())
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(List.of(exampleResource))
+     *                 .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static Output<GetHttpResult> getHttp(GetHttpArgs args) {
         return getHttp(args, InvokeOptions.Empty);
     }
+    /**
+     * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+     * information about the response.
+     * 
+     * The given URL may be either an `http.getHttp` or `https` URL. This resource
+     * will issue a warning if the result is not UTF-8 encoded.
+     * 
+     * &gt; **Important** Although `https` URLs can be used, there is currently no
+     * mechanism to authenticate the remote server except for general verification of
+     * the server certificate&#39;s chain of trust. Data retrieved from servers not under
+     * your control should be treated as untrustworthy.
+     * 
+     * By default, there are no retries. Configuring the retry block will result in
+     * retries if an error is returned by the client (e.g., connection errors) or if
+     * a 5xx-range (except 501) status code is received. For further details see
+     * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // The following example shows how to issue an HTTP GET request supplying
+     *         // an optional request header.
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP HEAD request.
+     *         final var exampleHead = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("HEAD")
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP POST request
+     *         // supplying an optional request body.
+     *         final var examplePost = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("POST")
+     *             .requestBody("request body")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Postcondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Precondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.random.Uuid;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleUuid = new Uuid("exampleUuid");
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Provisioner
+     * 
+     * Failure Behaviour
+     * can be leveraged within a provisioner in order to raise an error and stop applying.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.null.Resource;
+     * import com.pulumi.command.local.Command;
+     * import com.pulumi.command.local.CommandArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleResource = new Resource("exampleResource");
+     * 
+     *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
+     *             .create(StdFunctions.contains(Map.ofEntries(
+     *                 Map.entry("input", List.of(                
+     *                     201,
+     *                     204)),
+     *                 Map.entry("element", example.statusCode())
+     *             )).result())
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(List.of(exampleResource))
+     *                 .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static CompletableFuture<GetHttpResult> getHttpPlain(GetHttpPlainArgs args) {
         return getHttpPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+     * information about the response.
+     * 
+     * The given URL may be either an `http.getHttp` or `https` URL. This resource
+     * will issue a warning if the result is not UTF-8 encoded.
+     * 
+     * &gt; **Important** Although `https` URLs can be used, there is currently no
+     * mechanism to authenticate the remote server except for general verification of
+     * the server certificate&#39;s chain of trust. Data retrieved from servers not under
+     * your control should be treated as untrustworthy.
+     * 
+     * By default, there are no retries. Configuring the retry block will result in
+     * retries if an error is returned by the client (e.g., connection errors) or if
+     * a 5xx-range (except 501) status code is received. For further details see
+     * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // The following example shows how to issue an HTTP GET request supplying
+     *         // an optional request header.
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP HEAD request.
+     *         final var exampleHead = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("HEAD")
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP POST request
+     *         // supplying an optional request body.
+     *         final var examplePost = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("POST")
+     *             .requestBody("request body")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Postcondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Precondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.random.Uuid;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleUuid = new Uuid("exampleUuid");
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Provisioner
+     * 
+     * Failure Behaviour
+     * can be leveraged within a provisioner in order to raise an error and stop applying.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.null.Resource;
+     * import com.pulumi.command.local.Command;
+     * import com.pulumi.command.local.CommandArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleResource = new Resource("exampleResource");
+     * 
+     *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
+     *             .create(StdFunctions.contains(Map.ofEntries(
+     *                 Map.entry("input", List.of(                
+     *                     201,
+     *                     204)),
+     *                 Map.entry("element", example.statusCode())
+     *             )).result())
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(List.of(exampleResource))
+     *                 .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static Output<GetHttpResult> getHttp(GetHttpArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("http:index/getHttp:getHttp", TypeShape.of(GetHttpResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+     * information about the response.
+     * 
+     * The given URL may be either an `http.getHttp` or `https` URL. This resource
+     * will issue a warning if the result is not UTF-8 encoded.
+     * 
+     * &gt; **Important** Although `https` URLs can be used, there is currently no
+     * mechanism to authenticate the remote server except for general verification of
+     * the server certificate&#39;s chain of trust. Data retrieved from servers not under
+     * your control should be treated as untrustworthy.
+     * 
+     * By default, there are no retries. Configuring the retry block will result in
+     * retries if an error is returned by the client (e.g., connection errors) or if
+     * a 5xx-range (except 501) status code is received. For further details see
+     * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // The following example shows how to issue an HTTP GET request supplying
+     *         // an optional request header.
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP HEAD request.
+     *         final var exampleHead = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("HEAD")
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP POST request
+     *         // supplying an optional request body.
+     *         final var examplePost = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("POST")
+     *             .requestBody("request body")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Postcondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Precondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.random.Uuid;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleUuid = new Uuid("exampleUuid");
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Provisioner
+     * 
+     * Failure Behaviour
+     * can be leveraged within a provisioner in order to raise an error and stop applying.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.null.Resource;
+     * import com.pulumi.command.local.Command;
+     * import com.pulumi.command.local.CommandArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleResource = new Resource("exampleResource");
+     * 
+     *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
+     *             .create(StdFunctions.contains(Map.ofEntries(
+     *                 Map.entry("input", List.of(                
+     *                     201,
+     *                     204)),
+     *                 Map.entry("element", example.statusCode())
+     *             )).result())
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(List.of(exampleResource))
+     *                 .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static Output<GetHttpResult> getHttp(GetHttpArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("http:index/getHttp:getHttp", TypeShape.of(GetHttpResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+     * information about the response.
+     * 
+     * The given URL may be either an `http.getHttp` or `https` URL. This resource
+     * will issue a warning if the result is not UTF-8 encoded.
+     * 
+     * &gt; **Important** Although `https` URLs can be used, there is currently no
+     * mechanism to authenticate the remote server except for general verification of
+     * the server certificate&#39;s chain of trust. Data retrieved from servers not under
+     * your control should be treated as untrustworthy.
+     * 
+     * By default, there are no retries. Configuring the retry block will result in
+     * retries if an error is returned by the client (e.g., connection errors) or if
+     * a 5xx-range (except 501) status code is received. For further details see
+     * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // The following example shows how to issue an HTTP GET request supplying
+     *         // an optional request header.
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP HEAD request.
+     *         final var exampleHead = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("HEAD")
+     *             .build());
+     * 
+     *         // The following example shows how to issue an HTTP POST request
+     *         // supplying an optional request body.
+     *         final var examplePost = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .method("POST")
+     *             .requestBody("request body")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Postcondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Precondition
+     * 
+     * Precondition and Postcondition
+     * checks are available with Terraform v1.2.0 and later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.random.Uuid;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleUuid = new Uuid("exampleUuid");
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Usage with Provisioner
+     * 
+     * Failure Behaviour
+     * can be leveraged within a provisioner in order to raise an error and stop applying.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.http.HttpFunctions;
+     * import com.pulumi.http.inputs.GetHttpArgs;
+     * import com.pulumi.null.Resource;
+     * import com.pulumi.command.local.Command;
+     * import com.pulumi.command.local.CommandArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = HttpFunctions.getHttp(GetHttpArgs.builder()
+     *             .url("https://checkpoint-api.hashicorp.com/v1/check/terraform")
+     *             .requestHeaders(Map.of("Accept", "application/json"))
+     *             .build());
+     * 
+     *         var exampleResource = new Resource("exampleResource");
+     * 
+     *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
+     *             .create(StdFunctions.contains(Map.ofEntries(
+     *                 Map.entry("input", List.of(                
+     *                     201,
+     *                     204)),
+     *                 Map.entry("element", example.statusCode())
+     *             )).result())
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(List.of(exampleResource))
+     *                 .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static CompletableFuture<GetHttpResult> getHttpPlain(GetHttpPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("http:index/getHttp:getHttp", TypeShape.of(GetHttpResult.class), args, Utilities.withVersion(options));
     }

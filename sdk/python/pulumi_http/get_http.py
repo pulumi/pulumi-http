@@ -186,6 +186,9 @@ class GetHttpResult:
     @_builtins.property
     @pulumi.getter
     def retry(self) -> Optional['outputs.GetHttpRetryResult']:
+        """
+        Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        """
         return pulumi.get(self, "retry")
 
     @_builtins.property
@@ -241,7 +244,101 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
              url: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHttpResult:
     """
-    Use this data source to access information about an existing resource.
+    The `get_http` data source makes an HTTP GET request to the given URL and exports
+    information about the response.
+
+    The given URL may be either an `get_http` or `https` URL. This resource
+    will issue a warning if the result is not UTF-8 encoded.
+
+    > **Important** Although `https` URLs can be used, there is currently no
+    mechanism to authenticate the remote server except for general verification of
+    the server certificate's chain of trust. Data retrieved from servers not under
+    your control should be treated as untrustworthy.
+
+    By default, there are no retries. Configuring the retry block will result in
+    retries if an error is returned by the client (e.g., connection errors) or if
+    a 5xx-range (except 501) status code is received. For further details see
+    [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+
+    # The following example shows how to issue an HTTP GET request supplying
+    # an optional request header.
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    # The following example shows how to issue an HTTP HEAD request.
+    example_head = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        method="HEAD")
+    # The following example shows how to issue an HTTP POST request
+    # supplying an optional request body.
+    example_post = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        method="POST",
+        request_body="request body")
+    ```
+
+    ## Usage with Postcondition
+
+    Precondition and Postcondition
+    checks are available with Terraform v1.2.0 and later.
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    ```
+
+    ## Usage with Precondition
+
+    Precondition and Postcondition
+    checks are available with Terraform v1.2.0 and later.
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+    import pulumi_random as random
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    example_uuid = random.index.Uuid("example")
+    ```
+
+    ## Usage with Provisioner
+
+    Failure Behaviour
+    can be leveraged within a provisioner in order to raise an error and stop applying.
+
+    ```python
+    import pulumi
+    import pulumi_command as command
+    import pulumi_http as http
+    import pulumi_null as null
+    import pulumi_std as std
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    example_resource = null.index.Resource("example")
+    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.index.contains(input=[
+            201,
+            204,
+        ],
+        element=example.status_code).result,
+    opts = pulumi.ResourceOptions(depends_on=[example_resource]))
+    ```
+
 
     :param _builtins.str ca_cert_pem: Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
     :param _builtins.str client_cert_pem: Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
@@ -251,6 +348,7 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
     :param _builtins.str request_body: The request body as a string.
     :param Mapping[str, _builtins.str] request_headers: A map of request header field names and values.
     :param _builtins.int request_timeout_ms: The request timeout in milliseconds.
+    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param _builtins.str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     __args__ = dict()
@@ -296,7 +394,101 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[_builtins.str]]]
                     url: Optional[pulumi.Input[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHttpResult]:
     """
-    Use this data source to access information about an existing resource.
+    The `get_http` data source makes an HTTP GET request to the given URL and exports
+    information about the response.
+
+    The given URL may be either an `get_http` or `https` URL. This resource
+    will issue a warning if the result is not UTF-8 encoded.
+
+    > **Important** Although `https` URLs can be used, there is currently no
+    mechanism to authenticate the remote server except for general verification of
+    the server certificate's chain of trust. Data retrieved from servers not under
+    your control should be treated as untrustworthy.
+
+    By default, there are no retries. Configuring the retry block will result in
+    retries if an error is returned by the client (e.g., connection errors) or if
+    a 5xx-range (except 501) status code is received. For further details see
+    [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+
+    # The following example shows how to issue an HTTP GET request supplying
+    # an optional request header.
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    # The following example shows how to issue an HTTP HEAD request.
+    example_head = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        method="HEAD")
+    # The following example shows how to issue an HTTP POST request
+    # supplying an optional request body.
+    example_post = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        method="POST",
+        request_body="request body")
+    ```
+
+    ## Usage with Postcondition
+
+    Precondition and Postcondition
+    checks are available with Terraform v1.2.0 and later.
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    ```
+
+    ## Usage with Precondition
+
+    Precondition and Postcondition
+    checks are available with Terraform v1.2.0 and later.
+
+    ```python
+    import pulumi
+    import pulumi_http as http
+    import pulumi_random as random
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    example_uuid = random.index.Uuid("example")
+    ```
+
+    ## Usage with Provisioner
+
+    Failure Behaviour
+    can be leveraged within a provisioner in order to raise an error and stop applying.
+
+    ```python
+    import pulumi
+    import pulumi_command as command
+    import pulumi_http as http
+    import pulumi_null as null
+    import pulumi_std as std
+
+    example = http.get_http(url="https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        request_headers={
+            "Accept": "application/json",
+        })
+    example_resource = null.index.Resource("example")
+    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.index.contains(input=[
+            201,
+            204,
+        ],
+        element=example.status_code).result,
+    opts = pulumi.ResourceOptions(depends_on=[example_resource]))
+    ```
+
 
     :param _builtins.str ca_cert_pem: Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
     :param _builtins.str client_cert_pem: Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
@@ -306,6 +498,7 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[_builtins.str]]]
     :param _builtins.str request_body: The request body as a string.
     :param Mapping[str, _builtins.str] request_headers: A map of request header field names and values.
     :param _builtins.int request_timeout_ms: The request timeout in milliseconds.
+    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param _builtins.str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     __args__ = dict()
