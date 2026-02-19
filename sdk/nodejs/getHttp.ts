@@ -6,6 +6,117 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+ * information about the response.
+ *
+ * The given URL may be either an `http.getHttp` or `https` URL. This resource
+ * will issue a warning if the result is not UTF-8 encoded.
+ *
+ * > **Important** Although `https` URLs can be used, there is currently no
+ * mechanism to authenticate the remote server except for general verification of
+ * the server certificate's chain of trust. Data retrieved from servers not under
+ * your control should be treated as untrustworthy.
+ *
+ * By default, there are no retries. Configuring the retry block will result in
+ * retries if an error is returned by the client (e.g., connection errors) or if
+ * a 5xx-range (except 501) status code is received. For further details see
+ * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ *
+ * // The following example shows how to issue an HTTP GET request supplying
+ * // an optional request header.
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * // The following example shows how to issue an HTTP HEAD request.
+ * const exampleHead = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     method: "HEAD",
+ * });
+ * // The following example shows how to issue an HTTP POST request
+ * // supplying an optional request body.
+ * const examplePost = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     method: "POST",
+ *     requestBody: "request body",
+ * });
+ * ```
+ *
+ * ## Usage with Postcondition
+ *
+ * Precondition and Postcondition
+ * checks are available with Terraform v1.2.0 and later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * ```
+ *
+ * ## Usage with Precondition
+ *
+ * Precondition and Postcondition
+ * checks are available with Terraform v1.2.0 and later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * const exampleUuid = new random.index.Uuid("example", {});
+ * ```
+ *
+ * ## Usage with Provisioner
+ *
+ * Failure Behaviour
+ * can be leveraged within a provisioner in order to raise an error and stop applying.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _null from "@pulumi/null";
+ * import * as command from "@pulumi/command";
+ * import * as http from "@pulumi/http";
+ * import * as std from "@pulumi/std";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * const exampleResource = new _null.index.Resource("example", {});
+ * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.index.contains({
+ *     input: [
+ *         201,
+ *         204,
+ *     ],
+ *     element: example.statusCode,
+ * }).result}, {
+ *     dependsOn: [exampleResource],
+ * });
+ * ```
+ */
 export function getHttp(args: GetHttpArgs, opts?: pulumi.InvokeOptions): Promise<GetHttpResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("http:index/getHttp:getHttp", {
@@ -58,6 +169,9 @@ export interface GetHttpArgs {
      * The request timeout in milliseconds.
      */
     requestTimeoutMs?: number;
+    /**
+     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     */
     retry?: inputs.GetHttpRetry;
     /**
      * The URL for the request. Supported schemes are `http.getHttp` and `https`.
@@ -123,6 +237,9 @@ export interface GetHttpResult {
      * A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).
      */
     readonly responseHeaders: {[key: string]: string};
+    /**
+     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     */
     readonly retry?: outputs.GetHttpRetry;
     /**
      * The HTTP response status code.
@@ -133,6 +250,117 @@ export interface GetHttpResult {
      */
     readonly url: string;
 }
+/**
+ * The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+ * information about the response.
+ *
+ * The given URL may be either an `http.getHttp` or `https` URL. This resource
+ * will issue a warning if the result is not UTF-8 encoded.
+ *
+ * > **Important** Although `https` URLs can be used, there is currently no
+ * mechanism to authenticate the remote server except for general verification of
+ * the server certificate's chain of trust. Data retrieved from servers not under
+ * your control should be treated as untrustworthy.
+ *
+ * By default, there are no retries. Configuring the retry block will result in
+ * retries if an error is returned by the client (e.g., connection errors) or if
+ * a 5xx-range (except 501) status code is received. For further details see
+ * [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ *
+ * // The following example shows how to issue an HTTP GET request supplying
+ * // an optional request header.
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * // The following example shows how to issue an HTTP HEAD request.
+ * const exampleHead = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     method: "HEAD",
+ * });
+ * // The following example shows how to issue an HTTP POST request
+ * // supplying an optional request body.
+ * const examplePost = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     method: "POST",
+ *     requestBody: "request body",
+ * });
+ * ```
+ *
+ * ## Usage with Postcondition
+ *
+ * Precondition and Postcondition
+ * checks are available with Terraform v1.2.0 and later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * ```
+ *
+ * ## Usage with Precondition
+ *
+ * Precondition and Postcondition
+ * checks are available with Terraform v1.2.0 and later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as http from "@pulumi/http";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * const exampleUuid = new random.index.Uuid("example", {});
+ * ```
+ *
+ * ## Usage with Provisioner
+ *
+ * Failure Behaviour
+ * can be leveraged within a provisioner in order to raise an error and stop applying.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _null from "@pulumi/null";
+ * import * as command from "@pulumi/command";
+ * import * as http from "@pulumi/http";
+ * import * as std from "@pulumi/std";
+ *
+ * const example = http.getHttp({
+ *     url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+ *     requestHeaders: {
+ *         Accept: "application/json",
+ *     },
+ * });
+ * const exampleResource = new _null.index.Resource("example", {});
+ * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.index.contains({
+ *     input: [
+ *         201,
+ *         204,
+ *     ],
+ *     element: example.statusCode,
+ * }).result}, {
+ *     dependsOn: [exampleResource],
+ * });
+ * ```
+ */
 export function getHttpOutput(args: GetHttpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetHttpResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("http:index/getHttp:getHttp", {
@@ -185,6 +413,9 @@ export interface GetHttpOutputArgs {
      * The request timeout in milliseconds.
      */
     requestTimeoutMs?: pulumi.Input<number>;
+    /**
+     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     */
     retry?: pulumi.Input<inputs.GetHttpRetryArgs>;
     /**
      * The URL for the request. Supported schemes are `http.getHttp` and `https`.
