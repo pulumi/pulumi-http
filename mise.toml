@@ -4,3 +4,4 @@
 [tools]
 # Add pulumi-converter-terraform plugin
 "vfox-pulumi:pulumi/pulumi-converter-terraform" = "1.2.4"
+golangci-lint = "2.7.0"
