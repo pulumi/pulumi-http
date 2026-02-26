@@ -140,9 +140,17 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.requestTimeoutMs);
     }
 
+    /**
+     * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     */
     @Import(name="retry")
     private @Nullable Output<GetHttpRetryArgs> retry;
 
+    /**
+     * @return Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+     * 
+     */
     public Optional<Output<GetHttpRetryArgs>> retry() {
         return Optional.ofNullable(this.retry);
     }
@@ -363,11 +371,23 @@ public final class GetHttpArgs extends com.pulumi.resources.InvokeArgs {
             return requestTimeoutMs(Output.of(requestTimeoutMs));
         }
 
+        /**
+         * @param retry Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+         * 
+         * @return builder
+         * 
+         */
         public Builder retry(@Nullable Output<GetHttpRetryArgs> retry) {
             $.retry = retry;
             return this;
         }
 
+        /**
+         * @param retry Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+         * 
+         * @return builder
+         * 
+         */
         public Builder retry(GetHttpRetryArgs retry) {
             return retry(Output.of(retry));
         }

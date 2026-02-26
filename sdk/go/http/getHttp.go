@@ -11,6 +11,192 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The `getHttp` data source makes an HTTP GET request to the given URL and exports
+// information about the response.
+//
+// The given URL may be either an `getHttp` or `https` URL. This resource
+// will issue a warning if the result is not UTF-8 encoded.
+//
+// > **Important** Although `https` URLs can be used, there is currently no
+// mechanism to authenticate the remote server except for general verification of
+// the server certificate's chain of trust. Data retrieved from servers not under
+// your control should be treated as untrustworthy.
+//
+// By default, there are no retries. Configuring the retry block will result in
+// retries if an error is returned by the client (e.g., connection errors) or if
+// a 5xx-range (except 501) status code is received. For further details see
+// [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-http/sdk/go/http"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// The following example shows how to issue an HTTP GET request supplying
+//			// an optional request header.
+//			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				RequestHeaders: map[string]interface{}{
+//					"Accept": "application/json",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// The following example shows how to issue an HTTP HEAD request.
+//			_, err = http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url:    "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				Method: pulumi.StringRef("HEAD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// The following example shows how to issue an HTTP POST request
+//			// supplying an optional request body.
+//			_, err = http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url:         "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				Method:      pulumi.StringRef("POST"),
+//				RequestBody: pulumi.StringRef("request body"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Usage with Postcondition
+//
+// Precondition and Postcondition
+// checks are available with Terraform v1.2.0 and later.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-http/sdk/go/http"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				RequestHeaders: map[string]interface{}{
+//					"Accept": "application/json",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Usage with Precondition
+//
+// Precondition and Postcondition
+// checks are available with Terraform v1.2.0 and later.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-http/sdk/go/http"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				RequestHeaders: map[string]interface{}{
+//					"Accept": "application/json",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = random.NewUuid(ctx, "example", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Usage with Provisioner
+//
+// Failure Behaviour
+// can be leveraged within a provisioner in order to raise an error and stop applying.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-command/sdk/go/command/local"
+//	"github.com/pulumi/pulumi-http/sdk/go/http"
+//	"github.com/pulumi/pulumi-null/sdk/go/null"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := http.GetHttp(ctx, &http.GetHttpArgs{
+//				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+//				RequestHeaders: map[string]interface{}{
+//					"Accept": "application/json",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleResource, err := null.NewResource(ctx, "example", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = local.NewCommand(ctx, "exampleResourceProvisioner0", &local.CommandArgs{
+//				Create: std.Contains(ctx, map[string]interface{}{
+//					"input": []float64{
+//						201,
+//						204,
+//					},
+//					"element": example.StatusCode,
+//				}, nil).Result,
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				exampleResource,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetHttp(ctx *pulumi.Context, args *GetHttpArgs, opts ...pulumi.InvokeOption) (*GetHttpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetHttpResult
@@ -38,8 +224,9 @@ type GetHttpArgs struct {
 	// A map of request header field names and values.
 	RequestHeaders map[string]string `pulumi:"requestHeaders"`
 	// The request timeout in milliseconds.
-	RequestTimeoutMs *int          `pulumi:"requestTimeoutMs"`
-	Retry            *GetHttpRetry `pulumi:"retry"`
+	RequestTimeoutMs *int `pulumi:"requestTimeoutMs"`
+	// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+	Retry *GetHttpRetry `pulumi:"retry"`
 	// The URL for the request. Supported schemes are `getHttp` and `https`.
 	Url string `pulumi:"url"`
 }
@@ -74,7 +261,8 @@ type GetHttpResult struct {
 	ResponseBodyBase64 string `pulumi:"responseBodyBase64"`
 	// A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).
 	ResponseHeaders map[string]string `pulumi:"responseHeaders"`
-	Retry           *GetHttpRetry     `pulumi:"retry"`
+	// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+	Retry *GetHttpRetry `pulumi:"retry"`
 	// The HTTP response status code.
 	StatusCode int `pulumi:"statusCode"`
 	// The URL for the request. Supported schemes are `getHttp` and `https`.
@@ -107,8 +295,9 @@ type GetHttpOutputArgs struct {
 	// A map of request header field names and values.
 	RequestHeaders pulumi.StringMapInput `pulumi:"requestHeaders"`
 	// The request timeout in milliseconds.
-	RequestTimeoutMs pulumi.IntPtrInput   `pulumi:"requestTimeoutMs"`
-	Retry            GetHttpRetryPtrInput `pulumi:"retry"`
+	RequestTimeoutMs pulumi.IntPtrInput `pulumi:"requestTimeoutMs"`
+	// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+	Retry GetHttpRetryPtrInput `pulumi:"retry"`
 	// The URL for the request. Supported schemes are `getHttp` and `https`.
 	Url pulumi.StringInput `pulumi:"url"`
 }
@@ -199,6 +388,7 @@ func (o GetHttpResultOutput) ResponseHeaders() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetHttpResult) map[string]string { return v.ResponseHeaders }).(pulumi.StringMapOutput)
 }
 
+// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
 func (o GetHttpResultOutput) Retry() GetHttpRetryPtrOutput {
 	return o.ApplyT(func(v GetHttpResult) *GetHttpRetry { return v.Retry }).(GetHttpRetryPtrOutput)
 }
