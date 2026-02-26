@@ -19,24 +19,19 @@ __all__ = [
     'GetHttpRetryArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class GetHttpRetryArgsDict(TypedDict):
-        attempts: NotRequired[_builtins.int]
-        """
-        The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
-        """
-        max_delay_ms: NotRequired[_builtins.int]
-        """
-        The maximum delay between retry requests in milliseconds.
-        """
-        min_delay_ms: NotRequired[_builtins.int]
-        """
-        The minimum delay between retry requests in milliseconds.
-        """
-elif False:
-    GetHttpRetryArgsDict: TypeAlias = Mapping[str, Any]
+class GetHttpRetryArgsDict(TypedDict):
+    attempts: NotRequired[_builtins.int]
+    """
+    The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
+    """
+    max_delay_ms: NotRequired[_builtins.int]
+    """
+    The maximum delay between retry requests in milliseconds.
+    """
+    min_delay_ms: NotRequired[_builtins.int]
+    """
+    The minimum delay between retry requests in milliseconds.
+    """
 
 @pulumi.input_type
 class GetHttpRetryArgs:

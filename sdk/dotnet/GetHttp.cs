@@ -11,12 +11,489 @@ namespace Pulumi.Http
 {
     public static class GetHttp
     {
+        /// <summary>
+        /// The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+        /// information about the response.
+        /// 
+        /// The given URL may be either an `http.getHttp` or `Https` URL. This resource
+        /// will issue a warning if the result is not UTF-8 encoded.
+        /// 
+        /// &gt; **Important** Although `Https` URLs can be used, there is currently no
+        /// mechanism to authenticate the remote server except for general verification of
+        /// the server certificate's chain of trust. Data retrieved from servers not under
+        /// your control should be treated as untrustworthy.
+        /// 
+        /// By default, there are no retries. Configuring the retry block will result in
+        /// retries if an error is returned by the client (e.g., connection errors) or if 
+        /// a 5xx-range (except 501) status code is received. For further details see 
+        /// [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // The following example shows how to issue an HTTP GET request supplying
+        ///     // an optional request header.
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP HEAD request.
+        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "HEAD",
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP POST request
+        ///     // supplying an optional request body.
+        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "POST",
+        ///         RequestBody = "request body",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Postcondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Precondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// using Random = Pulumi.Random;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleUuid = new Random.Index.Uuid("example");
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Provisioner
+        /// 
+        /// Failure Behaviour
+        /// can be leveraged within a provisioner in order to raise an error and stop applying.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Command = Pulumi.Command;
+        /// using Http = Pulumi.Http;
+        /// using Null = Pulumi.Null;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleResource = new Null.Index.Resource("example");
+        /// 
+        ///     var exampleResourceProvisioner0 = new Command.Local.Command("exampleResourceProvisioner0", new()
+        ///     {
+        ///         Create = Std.Index.Contains.Invoke(new()
+        ///         {
+        ///             Input = new[]
+        ///             {
+        ///                 201,
+        ///                 204,
+        ///             },
+        ///             Element = example.Apply(getHttpResult =&gt; getHttpResult.StatusCode),
+        ///         }).Result,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             exampleResource,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetHttpResult> InvokeAsync(GetHttpArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetHttpResult>("http:index/getHttp:getHttp", args ?? new GetHttpArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+        /// information about the response.
+        /// 
+        /// The given URL may be either an `http.getHttp` or `Https` URL. This resource
+        /// will issue a warning if the result is not UTF-8 encoded.
+        /// 
+        /// &gt; **Important** Although `Https` URLs can be used, there is currently no
+        /// mechanism to authenticate the remote server except for general verification of
+        /// the server certificate's chain of trust. Data retrieved from servers not under
+        /// your control should be treated as untrustworthy.
+        /// 
+        /// By default, there are no retries. Configuring the retry block will result in
+        /// retries if an error is returned by the client (e.g., connection errors) or if 
+        /// a 5xx-range (except 501) status code is received. For further details see 
+        /// [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // The following example shows how to issue an HTTP GET request supplying
+        ///     // an optional request header.
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP HEAD request.
+        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "HEAD",
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP POST request
+        ///     // supplying an optional request body.
+        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "POST",
+        ///         RequestBody = "request body",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Postcondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Precondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// using Random = Pulumi.Random;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleUuid = new Random.Index.Uuid("example");
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Provisioner
+        /// 
+        /// Failure Behaviour
+        /// can be leveraged within a provisioner in order to raise an error and stop applying.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Command = Pulumi.Command;
+        /// using Http = Pulumi.Http;
+        /// using Null = Pulumi.Null;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleResource = new Null.Index.Resource("example");
+        /// 
+        ///     var exampleResourceProvisioner0 = new Command.Local.Command("exampleResourceProvisioner0", new()
+        ///     {
+        ///         Create = Std.Index.Contains.Invoke(new()
+        ///         {
+        ///             Input = new[]
+        ///             {
+        ///                 201,
+        ///                 204,
+        ///             },
+        ///             Element = example.Apply(getHttpResult =&gt; getHttpResult.StatusCode),
+        ///         }).Result,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             exampleResource,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetHttpResult> Invoke(GetHttpInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetHttpResult>("http:index/getHttp:getHttp", args ?? new GetHttpInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `http.getHttp` data source makes an HTTP GET request to the given URL and exports
+        /// information about the response.
+        /// 
+        /// The given URL may be either an `http.getHttp` or `Https` URL. This resource
+        /// will issue a warning if the result is not UTF-8 encoded.
+        /// 
+        /// &gt; **Important** Although `Https` URLs can be used, there is currently no
+        /// mechanism to authenticate the remote server except for general verification of
+        /// the server certificate's chain of trust. Data retrieved from servers not under
+        /// your control should be treated as untrustworthy.
+        /// 
+        /// By default, there are no retries. Configuring the retry block will result in
+        /// retries if an error is returned by the client (e.g., connection errors) or if 
+        /// a 5xx-range (except 501) status code is received. For further details see 
+        /// [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // The following example shows how to issue an HTTP GET request supplying
+        ///     // an optional request header.
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP HEAD request.
+        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "HEAD",
+        ///     });
+        /// 
+        ///     // The following example shows how to issue an HTTP POST request
+        ///     // supplying an optional request body.
+        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         Method = "POST",
+        ///         RequestBody = "request body",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Postcondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Precondition
+        /// 
+        /// Precondition and Postcondition
+        /// checks are available with Terraform v1.2.0 and later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Http = Pulumi.Http;
+        /// using Random = Pulumi.Random;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleUuid = new Random.Index.Uuid("example");
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Usage with Provisioner
+        /// 
+        /// Failure Behaviour
+        /// can be leveraged within a provisioner in order to raise an error and stop applying.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Command = Pulumi.Command;
+        /// using Http = Pulumi.Http;
+        /// using Null = Pulumi.Null;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Http.GetHttp.Invoke(new()
+        ///     {
+        ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
+        ///         RequestHeaders = 
+        ///         {
+        ///             { "Accept", "application/json" },
+        ///         },
+        ///     });
+        /// 
+        ///     var exampleResource = new Null.Index.Resource("example");
+        /// 
+        ///     var exampleResourceProvisioner0 = new Command.Local.Command("exampleResourceProvisioner0", new()
+        ///     {
+        ///         Create = Std.Index.Contains.Invoke(new()
+        ///         {
+        ///             Input = new[]
+        ///             {
+        ///                 201,
+        ///                 204,
+        ///             },
+        ///             Element = example.Apply(getHttpResult =&gt; getHttpResult.StatusCode),
+        ///         }).Result,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             exampleResource,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetHttpResult> Invoke(GetHttpInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetHttpResult>("http:index/getHttp:getHttp", args ?? new GetHttpInvokeArgs(), options.WithDefaults());
     }
@@ -78,6 +555,9 @@ namespace Pulumi.Http
         [Input("requestTimeoutMs")]
         public int? RequestTimeoutMs { get; set; }
 
+        /// <summary>
+        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// </summary>
         [Input("retry")]
         public Inputs.GetHttpRetryArgs? Retry { get; set; }
 
@@ -149,6 +629,9 @@ namespace Pulumi.Http
         [Input("requestTimeoutMs")]
         public Input<int>? RequestTimeoutMs { get; set; }
 
+        /// <summary>
+        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// </summary>
         [Input("retry")]
         public Input<Inputs.GetHttpRetryInputArgs>? Retry { get; set; }
 
@@ -220,6 +703,9 @@ namespace Pulumi.Http
         /// A map of response header field names and values. Duplicate headers are concatenated according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2).
         /// </summary>
         public readonly ImmutableDictionary<string, string> ResponseHeaders;
+        /// <summary>
+        /// Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+        /// </summary>
         public readonly Outputs.GetHttpRetryResult? Retry;
         /// <summary>
         /// The HTTP response status code.
