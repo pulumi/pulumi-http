@@ -132,8 +132,8 @@
                 "description": "A collection of values returned by getHttp.\n",
                 "properties": {
                     "body": {
-                        "deprecationMessage": "Use\u003cspan pulumi-lang-nodejs=\" responseBody \" pulumi-lang-dotnet=\" ResponseBody \" pulumi-lang-go=\" responseBody \" pulumi-lang-python=\" response_body \" pulumi-lang-yaml=\" responseBody \" pulumi-lang-java=\" responseBody \"\u003e response_body \u003c/span\u003einstead",
-                        "description": "The response body returned as a string. **NOTE**: This is deprecated, use \u003cspan pulumi-lang-nodejs=\"`responseBody`\" pulumi-lang-dotnet=\"`ResponseBody`\" pulumi-lang-go=\"`responseBody`\" pulumi-lang-python=\"`response_body`\" pulumi-lang-yaml=\"`responseBody`\" pulumi-lang-java=\"`responseBody`\"\u003e`response_body`\u003c/span\u003e instead.\n",
+                        "deprecationMessage": "Use\u003cspan pulumi-lang-nodejs=\" responseBody \" pulumi-lang-dotnet=\" ResponseBody \" pulumi-lang-go=\" responseBody \" pulumi-lang-python=\" response_body \" pulumi-lang-yaml=\" responseBody \" pulumi-lang-java=\" responseBody \"\u003e responseBody \u003c/span\u003einstead",
+                        "description": "The response body returned as a string. **NOTE**: This is deprecated, use \u003cspan pulumi-lang-nodejs=\"`responseBody`\" pulumi-lang-dotnet=\"`ResponseBody`\" pulumi-lang-go=\"`responseBody`\" pulumi-lang-python=\"`response_body`\" pulumi-lang-yaml=\"`responseBody`\" pulumi-lang-java=\"`responseBody`\"\u003e`responseBody`\u003c/span\u003e instead.\n",
                         "type": "string"
                     },
                     "caCertPem": {
