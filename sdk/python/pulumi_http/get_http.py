@@ -311,7 +311,7 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
         request_headers={
             "Accept": "application/json",
         })
-    example_uuid = random.index.Uuid("example")
+    example_uuid = random.Uuid("example")
     ```
 
     ## Usage with Provisioner
@@ -330,8 +330,8 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
         request_headers={
             "Accept": "application/json",
         })
-    example_resource = null.index.Resource("example")
-    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.index.contains(input=[
+    example_resource = null.Resource("example")
+    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.contains(input=[
             201,
             204,
         ],
@@ -461,7 +461,7 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[_builtins.str]]]
         request_headers={
             "Accept": "application/json",
         })
-    example_uuid = random.index.Uuid("example")
+    example_uuid = random.Uuid("example")
     ```
 
     ## Usage with Provisioner
@@ -480,8 +480,8 @@ def get_http_output(ca_cert_pem: Optional[pulumi.Input[Optional[_builtins.str]]]
         request_headers={
             "Accept": "application/json",
         })
-    example_resource = null.index.Resource("example")
-    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.index.contains(input=[
+    example_resource = null.Resource("example")
+    example_resource_provisioner0 = command.local.Command("exampleResourceProvisioner0", create=std.contains(input=[
             201,
             204,
         ],

@@ -40,7 +40,7 @@ namespace Pulumi.Http
         /// {
         ///     // The following example shows how to issue an HTTP GET request supplying
         ///     // an optional request header.
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -50,7 +50,7 @@ namespace Pulumi.Http
         ///     });
         /// 
         ///     // The following example shows how to issue an HTTP HEAD request.
-        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     var exampleHead = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "HEAD",
@@ -58,7 +58,7 @@ namespace Pulumi.Http
         /// 
         ///     // The following example shows how to issue an HTTP POST request
         ///     // supplying an optional request body.
-        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     var examplePost = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "POST",
@@ -81,7 +81,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -107,7 +107,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -137,7 +137,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -202,7 +202,7 @@ namespace Pulumi.Http
         /// {
         ///     // The following example shows how to issue an HTTP GET request supplying
         ///     // an optional request header.
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -212,7 +212,7 @@ namespace Pulumi.Http
         ///     });
         /// 
         ///     // The following example shows how to issue an HTTP HEAD request.
-        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     var exampleHead = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "HEAD",
@@ -220,7 +220,7 @@ namespace Pulumi.Http
         /// 
         ///     // The following example shows how to issue an HTTP POST request
         ///     // supplying an optional request body.
-        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     var examplePost = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "POST",
@@ -243,7 +243,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -269,7 +269,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -299,7 +299,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -364,7 +364,7 @@ namespace Pulumi.Http
         /// {
         ///     // The following example shows how to issue an HTTP GET request supplying
         ///     // an optional request header.
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -374,7 +374,7 @@ namespace Pulumi.Http
         ///     });
         /// 
         ///     // The following example shows how to issue an HTTP HEAD request.
-        ///     var exampleHead = Http.GetHttp.Invoke(new()
+        ///     var exampleHead = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "HEAD",
@@ -382,7 +382,7 @@ namespace Pulumi.Http
         /// 
         ///     // The following example shows how to issue an HTTP POST request
         ///     // supplying an optional request body.
-        ///     var examplePost = Http.GetHttp.Invoke(new()
+        ///     var examplePost = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         Method = "POST",
@@ -405,7 +405,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -431,7 +431,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
@@ -461,7 +461,7 @@ namespace Pulumi.Http
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Http.GetHttp.Invoke(new()
+        ///     var example = Http.Index.GetHttp.Invoke(new()
         ///     {
         ///         Url = "https://checkpoint-api.hashicorp.com/v1/check/terraform",
         ///         RequestHeaders = 
