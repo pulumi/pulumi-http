@@ -106,7 +106,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const exampleResource = new _null.index.Resource("example", {});
- * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.index.contains({
+ * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.contains({
  *     input: [
  *         201,
  *         204,
@@ -350,7 +350,7 @@ export interface GetHttpResult {
  *     },
  * });
  * const exampleResource = new _null.index.Resource("example", {});
- * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.index.contains({
+ * const exampleResourceProvisioner0 = new command.local.Command("exampleResourceProvisioner0", {create: std.contains({
  *     input: [
  *         201,
  *         204,
