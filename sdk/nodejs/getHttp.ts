@@ -384,39 +384,39 @@ export interface GetHttpOutputArgs {
     /**
      * Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
-    caCertPem?: pulumi.Input<string>;
+    caCertPem?: pulumi.Input<string | undefined>;
     /**
      * Client certificate in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
-    clientCertPem?: pulumi.Input<string>;
+    clientCertPem?: pulumi.Input<string | undefined>;
     /**
      * Client key in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
      */
-    clientKeyPem?: pulumi.Input<string>;
+    clientKeyPem?: pulumi.Input<string | undefined>;
     /**
      * Disables verification of the server's certificate chain and hostname. Defaults to `false`
      */
-    insecure?: pulumi.Input<boolean>;
+    insecure?: pulumi.Input<boolean | undefined>;
     /**
      * The HTTP Method for the request. Allowed methods are a subset of methods defined in [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3) namely, `GET`, `HEAD`, and `POST`. `POST` support is only intended for read-only URLs, such as submitting a search.
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * The request body as a string.
      */
-    requestBody?: pulumi.Input<string>;
+    requestBody?: pulumi.Input<string | undefined>;
     /**
      * A map of request header field names and values.
      */
-    requestHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    requestHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The request timeout in milliseconds.
      */
-    requestTimeoutMs?: pulumi.Input<number>;
+    requestTimeoutMs?: pulumi.Input<number | undefined>;
     /**
      * Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
      */
-    retry?: pulumi.Input<inputs.GetHttpRetryArgs>;
+    retry?: pulumi.Input<inputs.GetHttpRetryArgs | undefined>;
     /**
      * The URL for the request. Supported schemes are `http.getHttp` and `https`.
      */

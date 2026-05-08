@@ -24,13 +24,13 @@ export interface GetHttpRetryArgs {
     /**
      * The number of times the request is to be retried. For example, if 2 is specified, the request will be tried a maximum of 3 times.
      */
-    attempts?: pulumi.Input<number>;
+    attempts?: pulumi.Input<number | undefined>;
     /**
      * The maximum delay between retry requests in milliseconds.
      */
-    maxDelayMs?: pulumi.Input<number>;
+    maxDelayMs?: pulumi.Input<number | undefined>;
     /**
      * The minimum delay between retry requests in milliseconds.
      */
-    minDelayMs?: pulumi.Input<number>;
+    minDelayMs?: pulumi.Input<number | undefined>;
 }

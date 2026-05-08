@@ -43,8 +43,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -96,8 +96,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -134,8 +134,8 @@ public final class HttpFunctions {
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
      * import com.pulumi.random.Uuid;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -178,8 +178,8 @@ public final class HttpFunctions {
      * import com.pulumi.command.local.CommandArgs;
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -200,13 +200,13 @@ public final class HttpFunctions {
      * 
      *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
      *             .create(StdFunctions.contains(Map.ofEntries(
-     *                 Map.entry("input", List.of(                
+     *                 Map.entry("input", Arrays.asList(                
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
      *             )).result())
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(List.of(exampleResource))
+     *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
      * 
      *     }
@@ -246,8 +246,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -299,8 +299,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -337,8 +337,8 @@ public final class HttpFunctions {
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
      * import com.pulumi.random.Uuid;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -381,8 +381,8 @@ public final class HttpFunctions {
      * import com.pulumi.command.local.CommandArgs;
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -403,13 +403,13 @@ public final class HttpFunctions {
      * 
      *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
      *             .create(StdFunctions.contains(Map.ofEntries(
-     *                 Map.entry("input", List.of(                
+     *                 Map.entry("input", Arrays.asList(                
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
      *             )).result())
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(List.of(exampleResource))
+     *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
      * 
      *     }
@@ -449,8 +449,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -502,8 +502,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -540,8 +540,8 @@ public final class HttpFunctions {
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
      * import com.pulumi.random.Uuid;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -584,8 +584,8 @@ public final class HttpFunctions {
      * import com.pulumi.command.local.CommandArgs;
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -606,13 +606,13 @@ public final class HttpFunctions {
      * 
      *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
      *             .create(StdFunctions.contains(Map.ofEntries(
-     *                 Map.entry("input", List.of(                
+     *                 Map.entry("input", Arrays.asList(                
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
      *             )).result())
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(List.of(exampleResource))
+     *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
      * 
      *     }
@@ -652,8 +652,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -705,8 +705,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -743,8 +743,8 @@ public final class HttpFunctions {
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
      * import com.pulumi.random.Uuid;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -787,8 +787,8 @@ public final class HttpFunctions {
      * import com.pulumi.command.local.CommandArgs;
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -809,13 +809,13 @@ public final class HttpFunctions {
      * 
      *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
      *             .create(StdFunctions.contains(Map.ofEntries(
-     *                 Map.entry("input", List.of(                
+     *                 Map.entry("input", Arrays.asList(                
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
      *             )).result())
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(List.of(exampleResource))
+     *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
      * 
      *     }
@@ -855,8 +855,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -908,8 +908,8 @@ public final class HttpFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -946,8 +946,8 @@ public final class HttpFunctions {
      * import com.pulumi.http.HttpFunctions;
      * import com.pulumi.http.inputs.GetHttpArgs;
      * import com.pulumi.random.Uuid;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -990,8 +990,8 @@ public final class HttpFunctions {
      * import com.pulumi.command.local.CommandArgs;
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1012,13 +1012,13 @@ public final class HttpFunctions {
      * 
      *         var exampleResourceProvisioner0 = new Command("exampleResourceProvisioner0", CommandArgs.builder()
      *             .create(StdFunctions.contains(Map.ofEntries(
-     *                 Map.entry("input", List.of(                
+     *                 Map.entry("input", Arrays.asList(                
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
      *             )).result())
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(List.of(exampleResource))
+     *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
      * 
      *     }

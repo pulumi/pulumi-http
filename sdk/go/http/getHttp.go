@@ -180,7 +180,7 @@ import (
 //			}
 //			_, err = local.NewCommand(ctx, "exampleResourceProvisioner0", &local.CommandArgs{
 //				Create: std.Contains(ctx, map[string]interface{}{
-//					"input": []float64{
+//					"input": []int{
 //						201,
 //						204,
 //					},
