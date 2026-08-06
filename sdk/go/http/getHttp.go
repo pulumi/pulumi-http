@@ -45,7 +45,7 @@ import (
 //			// an optional request header.
 //			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
 //				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
-//				RequestHeaders: map[string]interface{}{
+//				RequestHeaders: map[string]string{
 //					"Accept": "application/json",
 //				},
 //			}, nil)
@@ -95,7 +95,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
 //				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
-//				RequestHeaders: map[string]interface{}{
+//				RequestHeaders: map[string]string{
 //					"Accept": "application/json",
 //				},
 //			}, nil)
@@ -128,7 +128,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := http.GetHttp(ctx, &http.GetHttpArgs{
 //				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
-//				RequestHeaders: map[string]interface{}{
+//				RequestHeaders: map[string]string{
 //					"Accept": "application/json",
 //				},
 //			}, nil)
@@ -167,7 +167,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := http.GetHttp(ctx, &http.GetHttpArgs{
 //				Url: "https://checkpoint-api.hashicorp.com/v1/check/terraform",
-//				RequestHeaders: map[string]interface{}{
+//				RequestHeaders: map[string]string{
 //					"Accept": "application/json",
 //				},
 //			}, nil)
