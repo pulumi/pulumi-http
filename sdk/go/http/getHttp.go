@@ -270,12 +270,8 @@ type GetHttpResult struct {
 }
 
 func GetHttpOutput(ctx *pulumi.Context, args GetHttpOutputArgs, opts ...pulumi.InvokeOption) GetHttpResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetHttpResultOutput, error) {
-			args := v.(GetHttpArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("http:index/getHttp:getHttp", args, GetHttpResultOutput{}, options).(GetHttpResultOutput), nil
-		}).(GetHttpResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("http:index/getHttp:getHttp", args, GetHttpResultOutput{}, options).(GetHttpResultOutput)
 }
 
 // A collection of arguments for invoking getHttp.
