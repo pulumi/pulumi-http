@@ -6,7 +6,7 @@ Subject: [PATCH] Shim Provider
 
 diff --git a/pulumi-shim/pf.go b/pulumi-shim/pf.go
 new file mode 100644
-index 0000000..ce8e3ec
+index 000000000000..ce8e3ec1df36
 --- /dev/null
 +++ b/pulumi-shim/pf.go
 @@ -0,0 +1,10 @@
