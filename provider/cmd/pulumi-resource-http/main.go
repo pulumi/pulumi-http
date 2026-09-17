@@ -17,7 +17,7 @@
 package main
 
 import (
-	_ "embed" // Embed schema & bridge metadata
+	_ "embed" // Embed schema
 
 	"github.com/pulumi/pulumi-http/provider"
 )
@@ -25,9 +25,6 @@ import (
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
-//go:embed bridge-metadata.json
-var bridgeMetadata []byte
-
 func main() {
-	provider.TfbridgeMain(pulumiSchema, bridgeMetadata)
+	provider.TfbridgeMain(pulumiSchema)
 }

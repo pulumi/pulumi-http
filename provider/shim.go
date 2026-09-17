@@ -13,10 +13,9 @@ func ShimmedProvider() shim.Provider {
 	return pftfbridge.ShimProvider(upstream.PFProvider())
 }
 
-func TfbridgeMain(pulumiSchema []byte, bridgeMetadata []byte) {
+func TfbridgeMain(pulumiSchema []byte) {
 	meta := pftfbridge.ProviderMetadata{
-		PackageSchema:  pulumiSchema,
-		BridgeMetadata: bridgeMetadata,
+		PackageSchema: pulumiSchema,
 	}
 	pftfbridge.Main(context.Background(), "http", Provider(), meta)
 }
