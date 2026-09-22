@@ -240,7 +240,7 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
              request_body: Optional[_builtins.str] = None,
              request_headers: Optional[Mapping[str, _builtins.str]] = None,
              request_timeout_ms: Optional[_builtins.int] = None,
-             retry: Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict']] = None,
+             retry: Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict', 'outputs.GetHttpRetryResult']] = None,
              url: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHttpResult:
     """
@@ -348,7 +348,7 @@ def get_http(ca_cert_pem: Optional[_builtins.str] = None,
     :param _builtins.str request_body: The request body as a string.
     :param Mapping[str, _builtins.str] request_headers: A map of request header field names and values.
     :param _builtins.int request_timeout_ms: The request timeout in milliseconds.
-    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict', 'outputs.GetHttpRetryResult'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param _builtins.str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     __args__ = dict()
@@ -390,7 +390,7 @@ def get_http_output(ca_cert_pem: pulumi.Input[Optional[Optional[_builtins.str]]]
                     request_body: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     request_headers: pulumi.Input[Optional[Optional[Mapping[str, _builtins.str]]]] = None,
                     request_timeout_ms: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
-                    retry: pulumi.Input[Optional[Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict']]]] = None,
+                    retry: pulumi.Input[Optional[Optional[Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict', 'outputs.GetHttpRetryResult']]]] = None,
                     url: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHttpResult]:
     """
@@ -498,7 +498,7 @@ def get_http_output(ca_cert_pem: pulumi.Input[Optional[Optional[_builtins.str]]]
     :param _builtins.str request_body: The request body as a string.
     :param Mapping[str, _builtins.str] request_headers: A map of request header field names and values.
     :param _builtins.int request_timeout_ms: The request timeout in milliseconds.
-    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
+    :param Union['GetHttpRetryArgs', 'GetHttpRetryArgsDict', 'outputs.GetHttpRetryResult'] retry: Retry request configuration. By default there are no retries. Configuring this block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see [go-retryablehttp](https://pkg.go.dev/github.com/hashicorp/go-retryablehttp).
     :param _builtins.str url: The URL for the request. Supported schemes are `get_http` and `https`.
     """
     __args__ = dict()
