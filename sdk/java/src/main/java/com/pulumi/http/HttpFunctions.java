@@ -204,7 +204,7 @@ public final class HttpFunctions {
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
-     *             )).result())
+     *             )).get("result"))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
@@ -407,7 +407,7 @@ public final class HttpFunctions {
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
-     *             )).result())
+     *             )).get("result"))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
@@ -610,7 +610,7 @@ public final class HttpFunctions {
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
-     *             )).result())
+     *             )).get("result"))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
@@ -813,7 +813,7 @@ public final class HttpFunctions {
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
-     *             )).result())
+     *             )).get("result"))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
@@ -1016,7 +1016,7 @@ public final class HttpFunctions {
      *                     201,
      *                     204)),
      *                 Map.entry("element", example.statusCode())
-     *             )).result())
+     *             )).get("result"))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(Arrays.asList(exampleResource))
      *                 .build());
