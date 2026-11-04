@@ -19,11 +19,10 @@ public final class GetHttpResult {
     /**
      * @return The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
      * 
-     * @deprecated
-     * Use responseBody instead
+     * @deprecated Use responseBody instead
      * 
      */
-    @Deprecated /* Use responseBody instead */
+    @Deprecated
     private String body;
     /**
      * @return Certificate Authority (CA) in [PEM (RFC 1421)](https://datatracker.ietf.org/doc/html/rfc1421) format.
@@ -105,11 +104,10 @@ public final class GetHttpResult {
     /**
      * @return The response body returned as a string. **NOTE**: This is deprecated, use `responseBody` instead.
      * 
-     * @deprecated
-     * Use responseBody instead
+     * @deprecated Use responseBody instead
      * 
      */
-    @Deprecated /* Use responseBody instead */
+    @Deprecated
     public String body() {
         return this.body;
     }
